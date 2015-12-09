@@ -14,7 +14,8 @@
 enum tokenType
 {
     Identifier,
-    Number
+    Number,
+    ArithmeticOperator
 };
 
 class Lexer

@@ -21,6 +21,9 @@ bool Lexer::is(tokenType type, char c)
         case Number:
             return _isNumber(c);
 
+        case ArithmeticOperator:
+            return _isArithOperator(c);
+
         default:
             return false;
     }
