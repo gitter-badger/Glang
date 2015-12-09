@@ -17,5 +17,6 @@
 
 #define _isIdentifier(c) ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
 #define _isNumber(c) (c >= '0' && c <= '9')
+#define _isArithOperator(c) (c == '+' || c == '-' || c == '*' || c == '/' || c == '%')
 
 #endif
