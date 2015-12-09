@@ -1,0 +1,5 @@
+let myVariable = 2
+
+fn myFunc[] do
+    give 3
+end
