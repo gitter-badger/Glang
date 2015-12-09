@@ -8,10 +8,12 @@
 #import <iostream>
 #import "misc.hpp"
 #import "Lexer/Lexer.hpp"
+#import "Parser/Parser.hpp"
 
 int main(int argc, const char **argv)
 {
     Lexer myLexer = Lexer();
+    Parser myParser = Parser();
 
     // NOTE: We start 'argInd' at 1 because we don't want
     //  to do anything with the first argument (the program).
@@ -21,8 +23,9 @@ int main(int argc, const char **argv)
 
         std::string currentFileVal = getFile(*(argv + argInd));
 
-        myLexer.tokenize(currentFileVal);
-        myLexer.printTokenList();
+        myParser.parse(myLexer.tokenize(currentFileVal));
+
+        myLexer.reset();
     }
 
     return 0;
