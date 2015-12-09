@@ -18,11 +18,40 @@ void Lexer::tokenize(std::string fileData)
         char currChar = *(fileData.c_str() + i);
         Token thisTok = this->getToken(currChar);
 
+        if (i == 0)
+        {
+            this->lastToken = thisTok;
+        }
+
+        if ((thisTok.getType() != this->lastToken.getType() || this->is(Ignored, currChar)) &&
+            this->tmpTokStr.size() > 0)
+        {
+            this->putStreamInList();
+
+            this->tmpTokStr.clear();
+        }
+
         if (!this->is(Ignored, currChar))
         {
-            printf("%c\t:\t%s\n", currChar, thisTok.getType().c_str());
+            this->tmpTokStr.push_back(thisTok);
+
+            this->lastToken = thisTok;
         }
     }
+}
+
+void Lexer::putStreamInList()
+{
+    std::string tokType = "";
+    std::string finalVal = "";
+
+    for (size_t i = 0; i < this->tmpTokStr.size(); i++)
+    {
+        tokType = this->tmpTokStr.at(i).getType();
+        finalVal = finalVal + this->tmpTokStr.at(i).getVal();
+    }
+
+    this->tokenList.push_back(Token(tokType, finalVal));
 }
 
 bool Lexer::is(tokenType type, char c)

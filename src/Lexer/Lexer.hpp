@@ -9,6 +9,7 @@
 #define __LEXER_H__
 
 #include <iostream>
+#include <vector>
 #include <string>
 #include "tokenRules.h"
 #include "Token.hpp"
@@ -38,9 +39,20 @@ class Lexer
 
     private:
         //
+        // Used to keep track of the last token that we "saw"
+        //
+        Token lastToken = Token("Ignored", "N/A");
+
+        //
         // Used to keep track of all of the characters in the current "token"
         // 
-        std::string tmpTokStr;
+        std::vector<Token> tmpTokStr;
+
+        //
+        // Used to keep track of all of the final tokens that we extracted
+        //  from the input.
+        //
+        std::vector<Token> tokenList;
 
         //
         // Lexer::is(tokenType type, char c)
@@ -55,6 +67,14 @@ class Lexer
         // Fetches a token that matches the passed in character.
         //
         Token getToken(char c);
+
+        //
+        // Lexer::putStreamInList()
+        //
+        // Puts the contents of the temp token stream into the final
+        //  token list
+        //
+        void putStreamInList();
 };
 
 #endif
