@@ -20,3 +20,5 @@ Right parenthesis are defined using any one of the following characters:
 The following are keywords and cannot be used as identifiers:
 'fn'
 'let'
+'do'
+'done'
