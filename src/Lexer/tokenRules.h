@@ -8,6 +8,6 @@
 #ifndef __TOKENRULES_H__
 #define __TOKENRULES_H__
 
-#define isIdentifier(c) ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+#define _isIdentifier(c) ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
 
 #endif
