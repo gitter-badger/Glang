@@ -1,0 +1,25 @@
+Current input file: /Users/Brynden/src/glang/test/program1.glang
+[Keyword]	let
+[Identifier]	myVariable
+[Unknown]	=
+[Number]	2
+===
+[Keyword]	fn
+[Identifier]	myFunc
+[LeftParen]	[
+[RightParen]	]
+[Keyword]	do
+===
+[Keyword]	give
+[Number]	3
+===
+[Keyword]	done
+===
+[Identifier]	myFunc
+[LeftParen]	[
+[RightParen]	]
+===
+[Identifier]	myFunc
+[LeftParen]	(
+[RightParen]	)
+===
