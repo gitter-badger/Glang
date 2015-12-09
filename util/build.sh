@@ -17,6 +17,8 @@ incStrs=""
 
 for class in ${classes[@]}
 do
+    echo "Preprocessing, compiling, and assembling $class"
+
     # The way this is written, we're basically forced to make sure
     #  that all filenames are unique, no matter what the directory.
     #  This should probably be changed in the future.
@@ -32,11 +34,16 @@ do
     clang++ -c $cppFile -o $outFile
 
     incStrs="$incStrs $outFile"
+
+    echo "Finished preprocessing, compiling, and assembling $class"
+    echo "Output file for $class is located in $outFile"
 done
 
 # Currently, we're assuming that the entry point of 'glang'
 #  is located in a 'entry.cpp' file. If it doesn't, we'll
 #  need to change this line.
 entryPoint=$srcDir/entry.cpp
+
+echo "Creating final binary."
 
 clang++ -o $binDir/glang $entryPoint $incStrs
