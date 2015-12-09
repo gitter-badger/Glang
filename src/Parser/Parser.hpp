@@ -8,10 +8,15 @@
 #ifndef __PARSER_H__
 #define __PARSER_H__
 
+#import <iostream>
+#import <vector>
+#import "../Lexer/Token.hpp"
+
 class Parser
 {
     public:
         Parser();
+        void parse(std::vector<Token> tokenList);
 };
 
 #endif

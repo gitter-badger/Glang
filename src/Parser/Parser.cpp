@@ -9,5 +9,14 @@
 
 Parser::Parser()
 {
-    
+}
+
+void Parser::parse(std::vector<Token> tokenList)
+{
+    for (size_t tokInd = 0; tokInd < tokenList.size(); tokInd++)
+    {
+        Token thisTok = tokenList.at(tokInd);
+
+        printf("[%s]\t%s\n", thisTok.getType().c_str(), thisTok.getVal().c_str());
+    }
 }
