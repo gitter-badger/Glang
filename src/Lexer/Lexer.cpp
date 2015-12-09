@@ -40,6 +40,16 @@ void Lexer::tokenize(std::string fileData)
     }
 }
 
+void Lexer::printTokenList()
+{
+    for (size_t i = 0; i < this->tokenList.size(); i++)
+    {
+        Token currTok = this->tokenList.at(i);
+
+        printf("%s\t:\t%s\n", currTok.getVal().c_str(), currTok.getType().c_str());
+    }
+}
+
 void Lexer::putStreamInList()
 {
     std::string tokType = "";

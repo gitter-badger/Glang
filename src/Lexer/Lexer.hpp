@@ -37,6 +37,13 @@ class Lexer
         //
         void tokenize(std::string data);
 
+        //
+        // Lexer::printTokenList()
+        //
+        // Prints the token list to stdout
+        //
+        void printTokenList();
+
     private:
         //
         // Used to keep track of the last token that we "saw"
