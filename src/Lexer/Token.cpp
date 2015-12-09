@@ -12,3 +12,13 @@ Token::Token(std::string type, std::string val)
     this->typeStr = type;
     this->valStr = val;
 }
+
+std::string Token::getType()
+{
+    return this->typeStr;
+}
+
+std::string Token::getVal()
+{
+    return this->valStr;
+}
