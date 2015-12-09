@@ -9,13 +9,15 @@
 #define __LEXER_H__
 
 #include <iostream>
+#include <string>
 #include "tokenRules.h"
 
 enum tokenType
 {
     Identifier,
     Number,
-    ArithmeticOperator
+    ArithmeticOperator,
+    Ignored
 };
 
 class Lexer
@@ -25,6 +27,13 @@ class Lexer
         // Lexer::Lexer()
         //
         Lexer();
+
+        //
+        // Lexer::tokenize(std::string fileData)
+        //
+        // Used to tokenize any string of data.
+        //
+        void tokenize(std::string data);
 
     private:
         //
