@@ -37,6 +37,11 @@ class Lexer
 
     private:
         //
+        // Used to keep track of all of the characters in the current "token"
+        // 
+        std::string tmpTokStr;
+
+        //
         // Lexer::is(tokenType type, char c)
         //
         // Used to determine if a character is of the desired type.
