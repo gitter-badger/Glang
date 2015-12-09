@@ -19,7 +19,10 @@ enum tokenType
     Identifier,
     Number,
     ArithmeticOperator,
-    Ignored
+    Ignored,
+    LeftParen,
+    RightParen,
+    Parenthesis
 };
 
 class Lexer

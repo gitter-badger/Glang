@@ -82,6 +82,15 @@ bool Lexer::is(tokenType type, char c)
         case Ignored:
             return _isIgnored(c);
 
+        case Parenthesis:
+            return _isLeftParen(c) || _isRightParen(c);
+
+        case LeftParen:
+            return _isLeftParen(c);
+
+        case RightParen:
+            return _isRightParen(c);
+
         default:
             return false;
     }
@@ -108,6 +117,18 @@ Token Lexer::getToken(char c)
     {
         return Token("Ignored", tmpStr);
     }
+    else if (this->is(Parenthesis, c))
+    {
+        if (this->is(LeftParen, c))
+        {
+            return Token("LeftParen", tmpStr);
+        }
+        else if (this->is(RightParen, c))
+        {
+            return Token("RightParen", tmpStr);
+        }
+    }
+
 
     return Token("Unknown", tmpStr);
 }
