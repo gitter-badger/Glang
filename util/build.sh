@@ -8,7 +8,9 @@ projectRoot=/Users/Brynden/src/glang
 srcDir=$projectRoot/src
 binDir=$projectRoot/bin
 
-classes=()
+classes=(
+    "Lexer"
+)
 
 incStrs=""
 
