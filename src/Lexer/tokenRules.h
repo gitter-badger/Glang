@@ -18,6 +18,7 @@
 #define _isIdentifier(c) ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
 #define _isNumber(c) (c >= '0' && c <= '9')
 #define _isArithOperator(c) (c == '+' || c == '-' || c == '*' || c == '/' || c == '%')
-#define _isIgnored(c) (c == '\n' || c == '\0')
+#define _isWhitespace(c) (c == '\n' || c == '\r' || c == '\t' || c == '\f' || c == ' ')
+#define _isIgnored(c) (_isWhitespace(c) || c == '\0')
 
 #endif
