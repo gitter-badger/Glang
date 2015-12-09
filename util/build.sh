@@ -3,9 +3,25 @@
 
 projectRoot=/Users/Brynden/src/glang
 
-binaryDir=$projectRoot/bin
-entryPoint=$projectRoot/src/entry.cpp
+srcDir=$projectRoot/src
+binDir=$projectRoot/bin
 
-g++ -o $binaryDir/glang $entryPoint
+classes=(
+    "Lexer"
+)
 
-chmod 700 $binaryDir/glang
+incStrs=""
+
+for class in ${classes[@]}
+do
+    cppFile="$srcDir/**/$class.cpp"
+    outFile="$binDir/$class.o"
+
+    clang++ -c $cppFile -o $outFile
+
+    incStrs="$incStrs $outFile"
+done
+
+entryPoint=$srcDir/entry.cpp
+
+clang++ -o $binDir/glang $entryPoint $incStrs
