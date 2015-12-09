@@ -9,15 +9,19 @@
 
 Lexer::Lexer()
 {
-    
 }
 
-bool Lexer::isIdentifier(char c)
+bool Lexer::is(tokenType type, char c)
 {
-    return _isIdentifier(c);
-}
+    switch (type)
+    {
+        case Identifier:
+            return _isIdentifier(c);
 
-bool Lexer::isNumber(char c)
-{
-    return _isNumber(c);
+        case Number:
+            return _isNumber(c);
+
+        default:
+            return false;
+    }
 }

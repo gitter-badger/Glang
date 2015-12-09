@@ -11,14 +11,27 @@
 #include <iostream>
 #include "tokenRules.h"
 
+enum tokenType
+{
+    Identifier,
+    Number
+};
+
 class Lexer
 {
     public:
+        //
+        // Lexer::Lexer()
+        //
         Lexer();
 
     private:
-        bool isIdentifier(char c);
-        bool isNumber(char c);
+        //
+        // Lexer::is(tokenType type, char c)
+        //
+        // Used to determine if a character is of the desired type.
+        //
+        bool is(tokenType type, char c);
 };
 
 #endif
