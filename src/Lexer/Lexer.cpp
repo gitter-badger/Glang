@@ -51,6 +51,8 @@ void Lexer::putStreamInList()
         finalVal = finalVal + this->tmpTokStr.at(i).getVal();
     }
 
+    // TODO (Gigabyte Giant): Take this chance to check if something is a keyword.
+
     this->tokenList.push_back(Token(tokType, finalVal));
 }
 
