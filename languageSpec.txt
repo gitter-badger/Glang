@@ -11,6 +11,12 @@ Numbers are defined using any number of the following characters:
 Arithmetic operators are defined using any one of the following characters:
 '+', '-', '*', '/', '%'
 
+Left parenthesis are defined using any one of the following characters:
+'(', '['
+
+Right parenthesis are defined using any one of the following characters:
+')', ']'
+
 The following are keywords and cannot be used as identifiers:
 'fn'
 'let'
