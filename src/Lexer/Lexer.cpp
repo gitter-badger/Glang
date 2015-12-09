@@ -46,7 +46,7 @@ void Lexer::printTokenList()
     {
         Token currTok = this->tokenList.at(i);
 
-        printf("%s\t:\t%s\n", currTok.getVal().c_str(), currTok.getType().c_str());
+        printf("\"%s\"\t:\t\"%s\"\n", currTok.getVal().c_str(), currTok.getType().c_str());
     }
 }
 
