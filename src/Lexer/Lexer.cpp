@@ -72,6 +72,14 @@ void Lexer::printTokenList()
     }
 }
 
+void Lexer::reset()
+{
+    this->tokenList.clear();
+    this->tmpTokStr.clear();
+    this->lastToken = Token("Ignored", "N/A");
+    this->inComment = false;
+}
+
 void Lexer::putStreamInList()
 {
     std::string tokType = "";

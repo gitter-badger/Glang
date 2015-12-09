@@ -48,6 +48,13 @@ class Lexer
         //
         void printTokenList();
 
+        //
+        // Lexer::reset()
+        //
+        // Resets the token stream and token list.
+        //
+        void reset();
+
     private:
         // This line is for testing purposes only.
         // TODO (Gigabyte Giant): Remove when done.
