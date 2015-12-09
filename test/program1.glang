@@ -5,7 +5,7 @@ $ Functions can be declared using the following syntax
 fn myFunc[] do
     $ Rather than having a generic "return", we'll use 'give'
     give 3
-end
+done
 
 $ Functions can be invoked as follows:
 myFunc[]
