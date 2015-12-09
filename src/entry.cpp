@@ -23,8 +23,6 @@ int main(int argc, const char **argv)
 
         myLexer.tokenize(currentFileVal);
         myLexer.printTokenList();
-
-        // TODO (Gigabyte Giant): Tokenize the current file, then parse.
     }
 
     return 0;
