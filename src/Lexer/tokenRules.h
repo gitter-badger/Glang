@@ -8,6 +8,13 @@
 #ifndef __TOKENRULES_H__
 #define __TOKENRULES_H__
 
+// NOTE: All macros in this file should be
+//  prefixed with an underscore ('_').
+// 
+// NOTE: When implementing lexer methods
+//  make sure to *not* prefix method names
+//  with underscores.
+
 #define _isIdentifier(c) ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
 
 #endif
