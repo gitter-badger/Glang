@@ -18,7 +18,7 @@ Lexer::Lexer()
     this->keywords.push_back("give");
 }
 
-void Lexer::tokenize(std::string fileData)
+std::vector<Token> Lexer::tokenize(std::string fileData)
 {
     for (int i = 0; i < (fileData.length() + 1); i++)
     {
@@ -58,6 +58,8 @@ void Lexer::tokenize(std::string fileData)
             }
         }
     }
+
+    return this->tokenList;
 }
 
 void Lexer::printTokenList()

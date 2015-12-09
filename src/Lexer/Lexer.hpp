@@ -39,7 +39,7 @@ class Lexer
         //
         // Used to tokenize any string of data.
         //
-        void tokenize(std::string data);
+        std::vector<Token> tokenize(std::string data);
 
         //
         // Lexer::printTokenList()
