@@ -3,6 +3,6 @@
 
 projectRoot=/Users/Brynden/src/glang
 
-binaryDir=$projectRoot/bin
+binDir=$projectRoot/bin
 
-$binaryDir/glang
+$binDir/glang
