@@ -132,6 +132,9 @@ bool Lexer::is(tokenType type, char c)
         case Comment:
             return _isComment(c);
 
+        case Terminator:
+            return _isTerminator(c);
+
         default:
             return false;
     }
@@ -184,6 +187,10 @@ Token Lexer::getToken(char c)
     else if (this->is(Comment, c))
     {
         return Token("Comment", tmpStr);
+    }
+    else if (this->is(Terminator, c))
+    {
+        return Token("Terminator", tmpStr);
     }
 
 

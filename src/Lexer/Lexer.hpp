@@ -23,7 +23,8 @@ enum tokenType
     LeftParen,
     RightParen,
     Parenthesis,
-    Comment
+    Comment,
+    Terminator
 };
 
 class Lexer

@@ -23,5 +23,6 @@
 #define _isIgnored(c)       (_isWhitespace(c) || c == '\0')
 #define _isLeftParen(c)     (c == '(' || c == '[')
 #define _isRightParen(c)    (c == ')' || c == ']')
+#define _isTerminator(c)    (c == ';')
 
 #endif
