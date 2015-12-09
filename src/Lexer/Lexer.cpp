@@ -15,6 +15,7 @@ Lexer::Lexer()
     this->keywords.push_back("let");
     this->keywords.push_back("do");
     this->keywords.push_back("done");
+    this->keywords.push_back("give");
 }
 
 void Lexer::tokenize(std::string fileData)

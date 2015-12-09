@@ -1,7 +1,14 @@
+$ Variables are declared using the 'let' keyword.
 let myVariable = 2
 
-$ This is a comment, and will be ignored!
-
+$ Functions can be declared using the following syntax
 fn myFunc[] do
+    $ Rather than having a generic "return", we'll use 'give'
     give 3
 end
+
+$ Functions can be invoked as follows:
+myFunc[]
+
+$ [] and () are virtually the same thing, so we could also do:
+myFunc()
