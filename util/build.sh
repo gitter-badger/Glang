@@ -10,6 +10,7 @@ binDir=$projectRoot/bin
 
 classes=(
     "Lexer"
+    "Parser"
 )
 
 incStrs=""
