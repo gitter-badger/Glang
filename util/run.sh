@@ -5,6 +5,6 @@ projectRoot=/Users/Brynden/src/glang
 
 binDir=$projectRoot/bin
 
-testFiles=$projectRoot/test/*.txt
+testFiles=$projectRoot/test/*.glang
 
 $binDir/glang $testFiles
