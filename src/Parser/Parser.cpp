@@ -18,5 +18,10 @@ void Parser::parse(std::vector<Token> tokenList)
         Token thisTok = tokenList.at(tokInd);
 
         printf("[%s]\t%s\n", thisTok.getType().c_str(), thisTok.getVal().c_str());
+
+        // TODO (Gigabyte Giant): Figure out a good way to determine what
+        //  a statement is.
+        // Example:
+        //  `let a = 1` should be marked at a variable declaration
     }
 }
