@@ -24,24 +24,37 @@ void Lexer::tokenize(std::string fileData)
         char currChar = *(fileData.c_str() + i);
         Token thisTok = this->getToken(currChar);
 
-        if (i == 0)
+        if (thisTok.getType() == "Comment")
         {
-            this->lastToken = thisTok;
+            this->inComment = true;
         }
 
-        if ((thisTok.getType() != this->lastToken.getType() || this->is(Ignored, currChar)) &&
-            this->tmpTokStr.size() > 0)
+        if (currChar == '\n')
         {
-            this->putStreamInList();
-
-            this->tmpTokStr.clear();
+            this->inComment = false;
         }
 
-        if (!this->is(Ignored, currChar))
+        if (!this->inComment)
         {
-            this->tmpTokStr.push_back(thisTok);
+            if (i == 0)
+            {
+                this->lastToken = thisTok;
+            }
 
-            this->lastToken = thisTok;
+            if ((thisTok.getType() != this->lastToken.getType() || this->is(Ignored, currChar)) &&
+                this->tmpTokStr.size() > 0)
+            {
+                this->putStreamInList();
+
+                this->tmpTokStr.clear();
+            }
+
+            if (!this->is(Ignored, currChar))
+            {
+                this->tmpTokStr.push_back(thisTok);
+
+                this->lastToken = thisTok;
+            }
         }
     }
 }
@@ -105,6 +118,9 @@ bool Lexer::is(tokenType type, char c)
         case RightParen:
             return _isRightParen(c);
 
+        case Comment:
+            return _isComment(c);
+
         default:
             return false;
     }
@@ -153,6 +169,10 @@ Token Lexer::getToken(char c)
         {
             return Token("RightParen", tmpStr);
         }
+    }
+    else if (this->is(Comment, c))
+    {
+        return Token("Comment", tmpStr);
     }
 
 

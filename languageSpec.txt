@@ -22,3 +22,6 @@ The following are keywords and cannot be used as identifiers:
 'let'
 'do'
 'done'
+
+Lines prefixed with any one of the following characters will be marked as comments, and ignored:
+'$'

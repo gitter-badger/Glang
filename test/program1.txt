@@ -1,5 +1,7 @@
 let myVariable = 2
 
+$ This is a comment, and will be ignored!
+
 fn myFunc[] do
     give 3
 end

@@ -19,6 +19,7 @@
 #define _isNumber(c) (c >= '0' && c <= '9')
 #define _isArithOperator(c) (c == '+' || c == '-' || c == '*' || c == '/' || c == '%')
 #define _isWhitespace(c) (c == '\n' || c == '\r' || c == '\t' || c == '\f' || c == ' ')
+#define _isComment(c) (c == '$')
 #define _isIgnored(c) (_isWhitespace(c) || c == '\0')
 #define _isLeftParen(c) (c == '(' || c == '[')
 #define _isRightParen(c) (c == ')' || c == ']')

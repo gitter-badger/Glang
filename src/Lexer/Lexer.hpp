@@ -22,7 +22,8 @@ enum tokenType
     Ignored,
     LeftParen,
     RightParen,
-    Parenthesis
+    Parenthesis,
+    Comment
 };
 
 class Lexer
@@ -48,6 +49,10 @@ class Lexer
         void printTokenList();
 
     private:
+        // This line is for testing purposes only.
+        // TODO (Gigabyte Giant): Remove when done.
+        bool inComment = false;
+
         std::vector<std::string> keywords;
 
         //
