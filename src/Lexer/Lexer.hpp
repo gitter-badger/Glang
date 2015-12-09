@@ -11,6 +11,7 @@
 #include <iostream>
 #include <string>
 #include "tokenRules.h"
+#include "Token.hpp"
 
 enum tokenType
 {
@@ -47,6 +48,13 @@ class Lexer
         // Used to determine if a character is of the desired type.
         //
         bool is(tokenType type, char c);
+
+        //
+        // Lexer::getToken(char c)
+        //
+        // Fetches a token that matches the passed in character.
+        //
+        Token getToken(char c);
 };
 
 #endif

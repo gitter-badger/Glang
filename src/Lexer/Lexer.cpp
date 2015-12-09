@@ -16,10 +16,11 @@ void Lexer::tokenize(std::string fileData)
     for (int i = 0; i < (fileData.length() + 1); i++)
     {
         char currChar = *(fileData.c_str() + i);
+        Token thisTok = this->getToken(currChar);
 
         if (!this->is(Ignored, currChar))
         {
-            printf("Current character: %c\n", currChar);
+            printf("%c\t:\t%s\n", currChar, thisTok.getType().c_str());
         }
     }
 }
@@ -43,4 +44,29 @@ bool Lexer::is(tokenType type, char c)
         default:
             return false;
     }
+}
+
+Token Lexer::getToken(char c)
+{
+    std::string tmpStr = "";
+    tmpStr = c;
+
+    if (this->is(Identifier, c))
+    {
+        return Token("Identifier", tmpStr);
+    }
+    else if (this->is(Number, c))
+    {
+        return Token("Number", tmpStr);
+    }
+    else if (this->is(ArithmeticOperator, c))
+    {
+        return Token("ArithmeticOperator", tmpStr);
+    }
+    else if (this->is(Ignored, c))
+    {
+        return Token("Ignored", tmpStr);
+    }
+
+    return Token("Unknown", tmpStr);
 }
