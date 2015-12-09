@@ -22,6 +22,7 @@ int main(int argc, const char **argv)
         std::string currentFileVal = getFile(*(argv + argInd));
 
         myLexer.tokenize(currentFileVal);
+        myLexer.printTokenList();
 
         // TODO (Gigabyte Giant): Tokenize the current file, then parse.
     }
