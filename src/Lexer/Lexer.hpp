@@ -48,6 +48,8 @@ class Lexer
         void printTokenList();
 
     private:
+        std::vector<std::string> keywords;
+
         //
         // Used to keep track of the last token that we "saw"
         //
@@ -70,6 +72,13 @@ class Lexer
         // Used to determine if a character is of the desired type.
         //
         bool is(tokenType type, char c);
+
+        //
+        // Lexer::isKeyword(std::string identifier)
+        //
+        // Used to determine if an identifier is actually a keyword
+        //
+        bool isKeyword(std::string identifier);
 
         //
         // Lexer::getToken(char c)

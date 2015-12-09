@@ -9,6 +9,8 @@
 
 Lexer::Lexer()
 {
+    this->keywords.push_back("fn");
+    this->keywords.push_back("let");
 }
 
 void Lexer::tokenize(std::string fileData)
@@ -62,6 +64,14 @@ void Lexer::putStreamInList()
     }
 
     // TODO (Gigabyte Giant): Take this chance to check if something is a keyword.
+    if (tokType == "Identifier")
+    {
+        if (this->isKeyword(finalVal))
+        {
+            this->tokenList.push_back(Token("Keyword", finalVal));
+            return;
+        }
+    }
 
     this->tokenList.push_back(Token(tokType, finalVal));
 }
@@ -94,6 +104,18 @@ bool Lexer::is(tokenType type, char c)
         default:
             return false;
     }
+}
+
+bool Lexer::isKeyword(std::string identifier)
+{
+    for (size_t i = 0; i < this->keywords.size(); i++)
+    {
+        if (this->keywords.at(i) == identifier) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 Token Lexer::getToken(char c)
