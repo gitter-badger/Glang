@@ -11,3 +11,8 @@ Lexer::Lexer()
 {
     
 }
+
+bool Lexer::isIdentifier(char c)
+{
+    return _isIdentifier(c);
+}

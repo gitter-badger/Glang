@@ -8,10 +8,16 @@
 #ifndef __LEXER_H__
 #define __LEXER_H__
 
+#include <iostream>
+#include "tokenRules.h"
+
 class Lexer
 {
     public:
         Lexer();
+
+    private:
+        bool isIdentifier(char c);
 };
 
 #endif
