@@ -10,5 +10,5 @@ end
 $ Functions can be invoked as follows:
 myFunc[]
 
-$ [] and () are virtually the same thing, so we could also do:
+$ [] and () are considered the same thing, so we could also do this:
 myFunc()
