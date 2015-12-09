@@ -9,6 +9,8 @@
 
 Lexer::Lexer()
 {
+    // TODO (Gigabyte Giant): Figure out a better way to keep track of
+    //  reserved words.
     this->keywords.push_back("fn");
     this->keywords.push_back("let");
     this->keywords.push_back("do");
