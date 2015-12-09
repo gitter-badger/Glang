@@ -18,6 +18,7 @@ class Lexer
 
     private:
         bool isIdentifier(char c);
+        bool isNumber(char c);
 };
 
 #endif

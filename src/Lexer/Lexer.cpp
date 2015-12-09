@@ -16,3 +16,8 @@ bool Lexer::isIdentifier(char c)
 {
     return _isIdentifier(c);
 }
+
+bool Lexer::isNumber(char c)
+{
+    return _isNumber(c);
+}
