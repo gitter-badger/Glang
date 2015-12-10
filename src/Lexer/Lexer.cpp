@@ -11,7 +11,6 @@
 
 Lexer::Lexer()
 {
-
 }
 
 std::vector<Token> Lexer::tokenizeFile(const char *filePath)
