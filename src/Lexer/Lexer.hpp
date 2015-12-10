@@ -9,6 +9,9 @@
 // TODO (Gigabyte Giant): Figure out a good way to store
 //  a list of reserved keywords.
 //
+// IDEAS:
+//  - 'std::vector' of 'std::string's
+//  - ...
 
 //
 // TODO (Gigabyte Giant): Figure out a good way to determine
@@ -20,9 +23,11 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
 #include <vector>
 #include "tokenRules.h"
 #include "Token.hpp"
+#include "keywords.hpp"
 
 enum CharacterType
 {
@@ -46,6 +51,7 @@ class Lexer
     private:
         bool is(CharacterType type, char c);
         Token getTokenFromChar(char c);
+        Keywords keywordTracker = Keywords();
 };
 
 #endif

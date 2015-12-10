@@ -48,6 +48,9 @@ std::string Token::resolveType()
         case Operator:
             return "Operator";
 
+        case Keyword:
+            return "Keyword";
+
         case Unknown:
             return "Unknown";
     }

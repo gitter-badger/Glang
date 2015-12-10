@@ -51,7 +51,7 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
                 {
                     inComment = _isCommentStart(tmpChar);
                 }
-                    
+                
                 // If we're currently in a comment, let's go ahead and
                 //  check to see if we're looking at a character that marks
                 //  the end of a comment. 
@@ -75,8 +75,15 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
                         // TODO (Gigabyte Giant): Perform a final check to see if
                         //  the "tokens" in 'tmpStream' make up a reserved word.
 
+                        Token tokToAdd = Token(lastToken.getType(), tmpStream);
+
+                        if (this->keywordTracker.isStrKeyword(tmpStream))
+                        {
+                            tokToAdd = Token(Keyword, tmpStream);
+                        }
+
                         // Append a new 'Token' to 'finalTokenList'.
-                        finalTokenList.push_back(Token(lastToken.getType(), tmpStream));
+                        finalTokenList.push_back(tokToAdd);
 
                         // Clear 'tmpStream'.
                         tmpStream = "";

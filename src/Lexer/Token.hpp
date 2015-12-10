@@ -20,6 +20,7 @@ enum TokenType
     LeftParen,
     RightParen,
     Operator,
+    Keyword,
     Unknown
 };
 
