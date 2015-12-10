@@ -114,7 +114,6 @@ bool Lexer::is(CharacterType type, char c)
             return _isIgnored(c);
 
         case _ctUnknown:
-            // I really don't think this check is needed, but whatever.
             return _isUnknown(c);
     }
 
