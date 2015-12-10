@@ -12,6 +12,7 @@ classes=(
     "Lexer"
     "Token"
     "Keywords"
+    "Parser"
 )
 
 incStrs=""
