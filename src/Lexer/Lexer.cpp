@@ -115,14 +115,6 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
         //  user.
     }
 
-    // TEST: Check to make sure everything was "tokenized" correctly.
-    for (size_t i = 0; i < finalTokenList.size(); i++)
-    {
-        Token thisTok = finalTokenList.at(i);
-
-        printf("[%s]\t%s\n", thisTok.resolveType().c_str(), thisTok.getValue().c_str());
-    }
-
     return finalTokenList;
 }
 
