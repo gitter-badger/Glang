@@ -66,12 +66,12 @@ VarDeclNode Parser::parseVarDecl(std::vector<Token> line)
 {
     // TODO (Gigabyte Giant): Parse a variable declaration
 
-    return VarDeclNode("afd", "asdfg");
+    return VarDeclNode("someVar", "someValue");
 }
 
-ASTNode Parser::parseFuncDecl(std::vector<Token> line)
+FuncDeclNode Parser::parseFuncDecl(std::vector<Token> line)
 {
     // TODO (Gigabyte Giant): Parse a function declaration
 
-    return ASTNode();
+    return FuncDeclNode("someFunc", std::vector<ASTNode>());
 }

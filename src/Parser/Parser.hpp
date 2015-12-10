@@ -24,8 +24,8 @@ class Parser
         AST ast;
         std::vector< std::vector<Token> > getLines(std::vector<Token> tokList);
 
-        ASTNode parseVarDecl(std::vector<Token> line);
-        ASTNode parseFuncDecl(std::vector<Token> line);
+        VarDeclNode parseVarDecl(std::vector<Token> line);
+        FuncDeclNode parseFuncDecl(std::vector<Token> line);
 };
 
 #endif
