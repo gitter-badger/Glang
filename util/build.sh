@@ -13,6 +13,8 @@ classes=(
     "Token"
     "Keywords"
     "Parser"
+    "AST"
+    "ASTNode"
 )
 
 incStrs=""
