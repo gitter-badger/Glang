@@ -17,6 +17,8 @@ class AST
     public:
         AST();
         void addNode(ASTNode newNode);
+        size_t size();
+        ASTNode get(size_t index);
 
     private:
         std::vector<ASTNode> nodes;

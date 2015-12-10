@@ -36,6 +36,15 @@ void Parser::parse(std::vector<Token> tokenList)
             //  what everything else is.
         }
     }
+
+    // TEST: Check to see if our ASTNodes were added properly
+    // TODO (Gigabyte Giant): Remove once the Parser is somewhat finished.
+    for (size_t i = 0; i < this->ast.size(); i++)
+    {
+        ASTNode currNode = this->ast.get(i);
+
+        printf("%s\n", currNode.nodeType.c_str());
+    }
 }
 
 std::vector< std::vector<Token> > Parser::getLines(std::vector<Token> tokList)
