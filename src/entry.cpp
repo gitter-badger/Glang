@@ -18,8 +18,7 @@ int main(int argc, const char **argv)
     for (int argInd = 1; argInd < argc; argInd++)
     {
         printf("Current input file: %s\n", *(argv + argInd));
-
-        // TODO (Gigabyte Giant): ...
+    
         myLex.tokenizeFile(*(argv + argInd));
     }
 
