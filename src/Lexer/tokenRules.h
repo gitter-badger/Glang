@@ -15,6 +15,11 @@
 //  make sure to *not* prefix method names
 //  with underscores.
 
-// TODO (Gigabyte Giant): ....
+#define _isIdent(c) ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+#define _isNumber(c) (c >= '0' && c <= '9')
+#define _isWhitespace(c) (c == '\r' || c == '\n' || c == '\f' || c == ' ')
+#define _isIgnored(c) (c == '\0' || _isWhitespace(c))
+
+#define _isUnknown(c) (!_isIdent(c) || !_isNumber(c) || !_isWhitespace(c))
 
 #endif

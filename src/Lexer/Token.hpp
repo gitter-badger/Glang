@@ -11,7 +11,28 @@
 #define __TOKEN_H__
 
 #import <iostream>
+#import <string>
 
-// TODO (Gigabyte Giant): ...
+enum TokenType
+{
+    Identifier,
+    Number,
+    Whitespace,
+    Unknown
+};
+
+class Token
+{
+    public:
+        Token(TokenType type, std::string value);
+
+        TokenType getType();
+        std::string getValue();
+        std::string resolveType();
+
+    private:
+        TokenType type;
+        std::string value;
+};
 
 #endif
