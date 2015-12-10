@@ -36,6 +36,15 @@ std::string Token::resolveType()
         case Whitespace:
             return "Whitespace";
 
+        case Terminator:
+            return "Terminator";
+
+        case LeftParen:
+            return "LeftParen";
+
+        case RightParen:
+            return "RightParen";
+
         case Unknown:
             return "Unknown";
     }

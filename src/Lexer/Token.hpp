@@ -16,6 +16,9 @@ enum TokenType
     Identifier,
     Number,
     Whitespace,
+    Terminator,
+    LeftParen,
+    RightParen,
     Unknown
 };
 

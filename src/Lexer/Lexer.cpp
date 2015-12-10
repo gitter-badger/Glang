@@ -113,6 +113,15 @@ bool Lexer::is(CharacterType type, char c)
         case _ctIgnored:
             return _isIgnored(c);
 
+        case _ctTerminator:
+            return _isTerminator(c);
+
+        case _ctLeftParen:
+            return _isLeftParen(c);
+
+        case _ctRightParen:
+            return _isRightParen(c);
+
         case _ctUnknown:
             return _isUnknown(c);
     }
@@ -133,6 +142,18 @@ Token Lexer::getTokenFromChar(char c)
     else if (this->is(_ctWhitespace, c))
     {
         return Token(Whitespace, std::string(c, 1));
+    }
+    else if (this->is(_ctTerminator, c))
+    {
+        return Token(Terminator, std::string(c, 1));
+    }
+    else if (this->is(_ctLeftParen, c))
+    {
+        return Token(LeftParen, std::string(c, 1));
+    }
+    else if (this->is(_ctRightParen, c))
+    {
+        return Token(RightParen, std::string(c, 1));
     }
 
     return Token(Unknown, std::string(c, 1));
