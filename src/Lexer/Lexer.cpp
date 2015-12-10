@@ -25,6 +25,9 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
     // Used to keep track of the last token that we iterated over.
     Token lastToken = Token(Unknown, "N/A");
 
+    // Used to determine whether or not we're in a comment.
+    bool inComment = false;
+
     // (Try to) open the file at the path specified in 'filePath'
     file.open(filePath);
 
@@ -41,34 +44,49 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
             {
                 Token currToken = this->getTokenFromChar(tmpChar);
 
-                // TODO (Gigabyte Giant): Figure out a more "sane" check
-                //  to see if we're at the start of the file.
-                if (lastToken.getValue() == "N/A")
-                {
-                    lastToken = currToken;
-                }
+                // If we're not currently in a comment, let's go ahead and
+                //  check to see if we're looking at a character that marks
+                //  the start of a comment.
+                if (!inComment)
+                    inComment = _isCommentStart(tmpChar);
+                    
+                // If we're currently in a comment, let's go ahead and
+                //  check to see if we're looking at a character that marks
+                //  the end of a comment. 
+                if (inComment)
+                    inComment = !_isCommentEnd(tmpChar);
 
-                if ((lastToken.getType() != currToken.getType()) &&
-                    tmpStream.size() > 0)
-                {
-                    // TODO (Gigabyte Giant): Perform a final check to see if
-                    //  the "tokens" in 'tmpStream' make up a reserved word.
+                if (!inComment)
+                {                    
+                    // TODO (Gigabyte Giant): Figure out a more "sane" check
+                    //  to see if we're at the start of the file.
+                    if (lastToken.getValue() == "N/A")
+                    {
+                        lastToken = currToken;
+                    }
 
-                    // Append a new 'Token' to 'finalTokenList'.
-                    finalTokenList.push_back(Token(lastToken.getType(), tmpStream));
+                    if ((lastToken.getType() != currToken.getType()) &&
+                        tmpStream.size() > 0)
+                    {
+                        // TODO (Gigabyte Giant): Perform a final check to see if
+                        //  the "tokens" in 'tmpStream' make up a reserved word.
 
-                    // Clear 'tmpStream'.
-                    tmpStream = "";
-                }
+                        // Append a new 'Token' to 'finalTokenList'.
+                        finalTokenList.push_back(Token(lastToken.getType(), tmpStream));
 
-                if (!this->is(_ctIgnored, tmpChar))
-                {
-                    // Append the current character to 'tmpStream'.
-                    tmpStream = tmpStream + tmpChar;
+                        // Clear 'tmpStream'.
+                        tmpStream = "";
+                    }
 
-                    // Since we'll be moving forward, "the current token
-                    //  becomes the last token".
-                    lastToken = currToken;
+                    if (!this->is(_ctIgnored, tmpChar))
+                    {
+                        // Append the current character to 'tmpStream'.
+                        tmpStream = tmpStream + tmpChar;
+
+                        // Since we'll be moving forward, "the current token
+                        //  becomes the last token".
+                        lastToken = currToken;
+                    }
                 }
             }
         }
