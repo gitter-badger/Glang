@@ -5,108 +5,53 @@
 // Created by Gigabyte Giant on 12/09/2015
 //
 
+//
+// TODO (Gigabyte Giant): Figure out a good way to store
+//  a list of reserved keywords.
+//
+// IDEAS:
+//  - 'std::vector' of 'std::string's
+//  - ...
+
+//
+// TODO (Gigabyte Giant): Figure out a good way to determine
+//  if a string of tokens makes up a reserved keyword.
+//
+
 #ifndef __LEXER_H__
 #define __LEXER_H__
 
 #include <iostream>
-#include <vector>
+#include <fstream>
 #include <string>
+#include <vector>
 #include "tokenRules.h"
 #include "Token.hpp"
+#include "keywords.hpp"
 
-enum tokenType
+enum CharacterType
 {
-    Identifier,
-    Number,
-    ArithmeticOperator,
-    Ignored,
-    LeftParen,
-    RightParen,
-    Parenthesis,
-    Comment,
-    Terminator
+    _ctUnknown,
+    _ctNumber,
+    _ctIdentifier,
+    _ctWhitespace,
+    _ctTerminator,
+    _ctIgnored,
+    _ctLeftParen,
+    _ctRightParen,
+    _ctOperator
 };
 
 class Lexer
 {
     public:
-        //
-        // Lexer::Lexer()
-        //
         Lexer();
-
-        //
-        // Lexer::tokenize(std::string fileData)
-        //
-        // Used to tokenize any string of data.
-        //
-        std::vector<Token> tokenize(std::string data);
-
-        //
-        // Lexer::printTokenList()
-        //
-        // Prints the token list to stdout
-        //
-        void printTokenList();
-
-        //
-        // Lexer::reset()
-        //
-        // Resets the token stream and token list.
-        //
-        void reset();
+        std::vector<Token> tokenizeFile(const char *filePath);
 
     private:
-        // This line is for testing purposes only.
-        // TODO (Gigabyte Giant): Remove when done.
-        bool inComment = false;
-
-        std::vector<std::string> keywords;
-
-        //
-        // Used to keep track of the last token that we "saw"
-        //
-        Token lastToken = Token("Ignored", "N/A");
-
-        //
-        // Used to keep track of all of the characters in the current "token"
-        // 
-        std::vector<Token> tmpTokStr;
-
-        //
-        // Used to keep track of all of the final tokens that we extracted
-        //  from the input.
-        //
-        std::vector<Token> tokenList;
-
-        //
-        // Lexer::is(tokenType type, char c)
-        //
-        // Used to determine if a character is of the desired type.
-        //
-        bool is(tokenType type, char c);
-
-        //
-        // Lexer::isKeyword(std::string identifier)
-        //
-        // Used to determine if an identifier is actually a keyword
-        //
-        bool isKeyword(std::string identifier);
-
-        //
-        // Lexer::getToken(char c)
-        //
-        // Fetches a token that matches the passed in character.
-        //
-        Token getToken(char c);
-
-        //
-        // Lexer::putStreamInList()
-        //
-        // Puts the contents of the temp token stream into the final
-        //  token list
-        //
-        void putStreamInList();
+        bool is(CharacterType type, char c);
+        Token getTokenFromChar(char c);
+        Keywords keywordTracker = Keywords();
 };
 
 #endif

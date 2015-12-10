@@ -7,18 +7,51 @@
 
 #import "Token.hpp"
 
-Token::Token(std::string type, std::string val)
+Token::Token(TokenType type, std::string value)
 {
-    this->typeStr = type;
-    this->valStr = val;
+    this->type = type;
+    this->value = value;
 }
 
-std::string Token::getType()
+TokenType Token::getType()
 {
-    return this->typeStr;
+    return this->type;
 }
 
-std::string Token::getVal()
+std::string Token::getValue()
 {
-    return this->valStr;
+    return this->value;
+}
+
+std::string Token::resolveType()
+{
+    switch (this->type)
+    {
+        case Identifier:
+            return "Identifier";
+
+        case Number:
+            return "Number";
+
+        case Whitespace:
+            return "Whitespace";
+
+        case Terminator:
+            return "Terminator";
+
+        case LeftParen:
+            return "LeftParen";
+
+        case RightParen:
+            return "RightParen";
+
+        case Operator:
+            return "Operator";
+
+        case Keyword:
+            return "Keyword";
+
+        case Unknown:
+            return "Unknown";
+    }
 }

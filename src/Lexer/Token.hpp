@@ -11,28 +11,31 @@
 #import <iostream>
 #import <string>
 
+enum TokenType
+{
+    Identifier,
+    Number,
+    Whitespace,
+    Terminator,
+    LeftParen,
+    RightParen,
+    Operator,
+    Keyword,
+    Unknown
+};
+
 class Token
 {
     public:
-        Token(std::string type, std::string val);
+        Token(TokenType type, std::string value);
 
-        //
-        // Token::getType()
-        //
-        // Used to fetch the token's type
-        //
-        std::string getType();
-
-        //
-        // Token::getVal()
-        //
-        // Used to fetch the token's value
-        //
-        std::string getVal();
+        TokenType getType();
+        std::string getValue();
+        std::string resolveType();
 
     private:
-        std::string typeStr;
-        std::string valStr;
+        TokenType type;
+        std::string value;
 };
 
 #endif

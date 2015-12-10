@@ -9,190 +9,188 @@
 
 Lexer::Lexer()
 {
-    // TODO (Gigabyte Giant): Figure out a better way to keep track of
-    //  reserved words.
-    this->keywords.push_back("fn");
-    this->keywords.push_back("let");
-    this->keywords.push_back("do");
-    this->keywords.push_back("done");
-    this->keywords.push_back("give");
 }
 
-std::vector<Token> Lexer::tokenize(std::string fileData)
+std::vector<Token> Lexer::tokenizeFile(const char *filePath)
 {
-    for (int i = 0; i < (fileData.length() + 1); i++)
+    std::ifstream file;
+
+    // Used to keep track of all of the "final tokens".
+    // Also gets returned to caller.
+    std::vector<Token> finalTokenList;
+
+    // Used to keep track of things like "123546"
+    std::string tmpStream = "";
+
+    // Used to keep track of the last token that we iterated over.
+    Token lastToken = Token(Unknown, "N/A");
+
+    // Used to determine whether or not we're in a comment.
+    bool inComment = false;
+
+    // (Try to) open the file at the path specified in 'filePath'
+    file.open(filePath);
+
+    // If we were able to open the file...
+    if (file.is_open())
     {
-        char currChar = *(fileData.c_str() + i);
-        Token thisTok = this->getToken(currChar);
+        // ...tokenize!
 
-        if (thisTok.getType() == "Comment")
-        {
-            this->inComment = true;
-        }
+        char tmpChar;
 
-        if (currChar == '\n')
+        while (file.get(tmpChar))
         {
-            this->inComment = false;
-        }
-
-        if (!this->inComment)
-        {
-            if (i == 0)
+            if (file.good())
             {
-                this->lastToken = thisTok;
-            }
+                Token currToken = this->getTokenFromChar(tmpChar);
 
-            if ((thisTok.getType() != this->lastToken.getType() || this->is(Ignored, currChar)) &&
-                this->tmpTokStr.size() > 0)
-            {
-                this->putStreamInList();
+                // If we're not currently in a comment, let's go ahead and
+                //  check to see if we're looking at a character that marks
+                //  the start of a comment.
+                if (!inComment)
+                {
+                    inComment = _isCommentStart(tmpChar);
+                }
+                
+                // If we're currently in a comment, let's go ahead and
+                //  check to see if we're looking at a character that marks
+                //  the end of a comment. 
+                if (inComment)
+                {
+                    inComment = !_isCommentEnd(tmpChar);
+                }
 
-                this->tmpTokStr.clear();
-            }
+                if (!inComment)
+                {                    
+                    // TODO (Gigabyte Giant): Figure out a more "sane" check
+                    //  to see if we're at the start of the file.
+                    if (lastToken.getValue() == "N/A")
+                    {
+                        lastToken = currToken;
+                    }
 
-            if (!this->is(Ignored, currChar))
-            {
-                this->tmpTokStr.push_back(thisTok);
+                    if ((lastToken.getType() != currToken.getType()) &&
+                        tmpStream.size() > 0)
+                    {
+                        // TODO (Gigabyte Giant): Perform a final check to see if
+                        //  the "tokens" in 'tmpStream' make up a reserved word.
 
-                this->lastToken = thisTok;
+                        Token tokToAdd = Token(lastToken.getType(), tmpStream);
+
+                        if (this->keywordTracker.isStrKeyword(tmpStream))
+                        {
+                            tokToAdd = Token(Keyword, tmpStream);
+                        }
+
+                        // Append a new 'Token' to 'finalTokenList'.
+                        finalTokenList.push_back(tokToAdd);
+
+                        // Clear 'tmpStream'.
+                        tmpStream = "";
+                    }
+
+                    if (!this->is(_ctIgnored, tmpChar))
+                    {
+                        // Append the current character to 'tmpStream'.
+                        tmpStream = tmpStream + tmpChar;
+
+                        // Since we'll be moving forward, "the current token
+                        //  becomes the last token".
+                        lastToken = currToken;
+                    }
+                }
             }
         }
+
+        // Since we've finished looping through the file, we should
+        //  dump the contents of 'tmpStream' into 'finalTokenList'.
+        finalTokenList.push_back(Token(lastToken.getType(), tmpStream));
+
+        // Close the file that we opened earlier, because we're done with it.
+        file.close();
     }
-
-    return this->tokenList;
-}
-
-void Lexer::printTokenList()
-{
-    for (size_t i = 0; i < this->tokenList.size(); i++)
+    else
     {
-        Token currTok = this->tokenList.at(i);
-
-        printf("%s (%s)\n", currTok.getVal().c_str(), currTok.getType().c_str());
+        // TODO (Gigabyte Giant): If we couldn't open the file, tell the end
+        //  user.
     }
-}
 
-void Lexer::reset()
-{
-    this->tokenList.clear();
-    this->tmpTokStr.clear();
-    this->lastToken = Token("Ignored", "N/A");
-    this->inComment = false;
-}
-
-void Lexer::putStreamInList()
-{
-    std::string tokType = "";
-    std::string finalVal = "";
-
-    for (size_t i = 0; i < this->tmpTokStr.size(); i++)
+    // TEST: Check to make sure everything was "tokenized" correctly.
+    for (size_t i = 0; i < finalTokenList.size(); i++)
     {
-        tokType = this->tmpTokStr.at(i).getType();
-        finalVal = finalVal + this->tmpTokStr.at(i).getVal();
+        Token thisTok = finalTokenList.at(i);
+
+        printf("[%s]\t%s\n", thisTok.resolveType().c_str(), thisTok.getValue().c_str());
     }
 
-    // TODO (Gigabyte Giant): Take this chance to check if something is a keyword.
-    if (tokType == "Identifier")
-    {
-        if (this->isKeyword(finalVal))
-        {
-            this->tokenList.push_back(Token("Keyword", finalVal));
-            return;
-        }
-    }
-
-    this->tokenList.push_back(Token(tokType, finalVal));
+    return finalTokenList;
 }
 
-bool Lexer::is(tokenType type, char c)
+bool Lexer::is(CharacterType type, char c)
 {
     switch (type)
     {
-        case Identifier:
-            return _isIdentifier(c);
-
-        case Number:
+        case _ctNumber:
             return _isNumber(c);
 
-        case ArithmeticOperator:
-            return _isArithOperator(c);
+        case _ctIdentifier:
+            return _isIdent(c);
 
-        case Ignored:
+        case _ctWhitespace:
+            return _isWhitespace(c);
+
+        case _ctIgnored:
             return _isIgnored(c);
 
-        case Parenthesis:
-            return _isLeftParen(c) || _isRightParen(c);
-
-        case LeftParen:
-            return _isLeftParen(c);
-
-        case RightParen:
-            return _isRightParen(c);
-
-        case Comment:
-            return _isComment(c);
-
-        case Terminator:
+        case _ctTerminator:
             return _isTerminator(c);
 
-        default:
-            return false;
-    }
-}
+        case _ctLeftParen:
+            return _isLeftParen(c);
 
-bool Lexer::isKeyword(std::string identifier)
-{
-    for (size_t i = 0; i < this->keywords.size(); i++)
-    {
-        if (this->keywords.at(i) == identifier) {
-            return true;
-        }
+        case _ctRightParen:
+            return _isRightParen(c);
+
+        case _ctOperator:
+            return _isOperator(c);
+
+        case _ctUnknown:
+            return _isUnknown(c);
     }
 
     return false;
 }
 
-Token Lexer::getToken(char c)
+Token Lexer::getTokenFromChar(char c)
 {
-    std::string tmpStr = "";
-    tmpStr = c;
-
-    if (this->is(Identifier, c))
+    if (this->is(_ctIdentifier, c))
     {
-        return Token("Identifier", tmpStr);
+        return Token(Identifier, std::string(c, 1));
     }
-    else if (this->is(Number, c))
+    else if (this->is(_ctNumber, c))
     {
-        return Token("Number", tmpStr);
+        return Token(Number, std::string(c, 1));
     }
-    else if (this->is(ArithmeticOperator, c))
+    else if (this->is(_ctWhitespace, c))
     {
-        return Token("ArithmeticOperator", tmpStr);
+        return Token(Whitespace, std::string(c, 1));
     }
-    else if (this->is(Ignored, c))
+    else if (this->is(_ctTerminator, c))
     {
-        return Token("Ignored", tmpStr);
+        return Token(Terminator, std::string(c, 1));
     }
-    else if (this->is(Parenthesis, c))
+    else if (this->is(_ctLeftParen, c))
     {
-        if (this->is(LeftParen, c))
-        {
-            return Token("LeftParen", tmpStr);
-        }
-        else if (this->is(RightParen, c))
-        {
-            return Token("RightParen", tmpStr);
-        }
+        return Token(LeftParen, std::string(c, 1));
     }
-    else if (this->is(Comment, c))
+    else if (this->is(_ctRightParen, c))
     {
-        return Token("Comment", tmpStr);
+        return Token(RightParen, std::string(c, 1));
     }
-    else if (this->is(Terminator, c))
+    else if (this->is(_ctOperator, c))
     {
-        return Token("Terminator", tmpStr);
+        return Token(Operator, std::string(c, 1));
     }
 
-
-    return Token("Unknown", tmpStr);
+    return Token(Unknown, std::string(c, 1));
 }
