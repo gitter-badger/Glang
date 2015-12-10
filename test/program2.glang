@@ -1,0 +1,7 @@
+let asdf = 123;
+
+fn myFunc(someParam) do;
+    give someParam * 2;
+done;
+
+myFunc(asdf);
