@@ -34,10 +34,14 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
     // Used to keep track of the last token that we iterated over.
     Token lastToken = Token(Unknown, "N/A");
 
+    // (Try to) open the file at the path specified in 'filePath'
     file.open(filePath);
 
+    // If we were able to open the file...
     if (file.is_open())
     {
+        // ...tokenize!
+
         char tmpChar;
 
         while (file.get(tmpChar))
@@ -78,7 +82,13 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
             }
         }
 
+        // Close the file that we opened earlier, because we're done with it.
         file.close();
+    }
+    else
+    {
+        // TODO (Gigabyte Giant): If we couldn't open the file, tell the end
+        //  user.
     }
 
     // TEST: Check to make sure everything was "tokenized" correctly.
