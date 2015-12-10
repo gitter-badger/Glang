@@ -48,13 +48,17 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
                 //  check to see if we're looking at a character that marks
                 //  the start of a comment.
                 if (!inComment)
+                {
                     inComment = _isCommentStart(tmpChar);
+                }
                     
                 // If we're currently in a comment, let's go ahead and
                 //  check to see if we're looking at a character that marks
                 //  the end of a comment. 
                 if (inComment)
+                {
                     inComment = !_isCommentEnd(tmpChar);
+                }
 
                 if (!inComment)
                 {                    
