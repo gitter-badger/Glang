@@ -26,7 +26,16 @@
 #define _isParen(c) (_isLeftParen(c) || _isRightParen(c))
 #define _isCommentStart(c) (c == '$')
 #define _isCommentEnd(c) (_isNewline(c))
+#define _isOperator(c) (c == '+' || c == '-' || c == '*' || c == '/' || c == '%')
 
-#define _isUnknown(c) (!_isIdent(c) && !_isNumber(c) && !_isWhitespace(c) && !_isParen(c))
+#define _isUnknown(c) ( \
+    !_isIdent(c) && \
+    !_isNumber(c) && \
+    !_isWhitespace(c) && \
+    !_isParen(c) && \
+    !_isCommentStart(c) && \
+    !_isCommentEnd(c) && \
+    !_isOperator(c) \
+)
 
 #endif

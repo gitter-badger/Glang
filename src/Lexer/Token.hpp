@@ -19,6 +19,7 @@ enum TokenType
     Terminator,
     LeftParen,
     RightParen,
+    Operator,
     Unknown
 };
 

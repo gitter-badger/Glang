@@ -144,6 +144,9 @@ bool Lexer::is(CharacterType type, char c)
         case _ctRightParen:
             return _isRightParen(c);
 
+        case _ctOperator:
+            return _isOperator(c);
+
         case _ctUnknown:
             return _isUnknown(c);
     }
@@ -176,6 +179,10 @@ Token Lexer::getTokenFromChar(char c)
     else if (this->is(_ctRightParen, c))
     {
         return Token(RightParen, std::string(c, 1));
+    }
+    else if (this->is(_ctOperator, c))
+    {
+        return Token(Operator, std::string(c, 1));
     }
 
     return Token(Unknown, std::string(c, 1));

@@ -33,7 +33,8 @@ enum CharacterType
     _ctTerminator,
     _ctIgnored,
     _ctLeftParen,
-    _ctRightParen
+    _ctRightParen,
+    _ctOperator
 };
 
 class Lexer

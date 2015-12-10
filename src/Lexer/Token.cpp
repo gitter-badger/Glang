@@ -45,6 +45,9 @@ std::string Token::resolveType()
         case RightParen:
             return "RightParen";
 
+        case Operator:
+            return "Operator";
+
         case Unknown:
             return "Unknown";
     }
