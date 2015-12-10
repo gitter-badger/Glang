@@ -43,7 +43,14 @@ void Parser::parse(std::vector<Token> tokenList)
     {
         ASTNode currNode = this->ast.get(i);
 
-        printf("%s\n", currNode.nodeType.c_str());
+        printf("%s", currNode.nodeType.c_str());
+
+        if (currNode.nodeType == "VariableDeclaration")
+        {
+            printf(": %s %s\n", currNode.varName.c_str(), currNode.varValue.c_str());
+        }
+
+        printf("\n");
     }
 }
 

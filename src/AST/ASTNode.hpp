@@ -31,7 +31,19 @@ class ASTNode
     public:
         ASTNode(NodeType nodeType);
 
+        // Begin properties used for all nodes
         std::string nodeType;
+        // End properties used for all nodes
+
+        // Begin properties used for variables
+        std::string varName;
+        std::string varValue;
+        // End properties used for variables
+
+        // Begin properties used for functions
+        std::string funcName;
+        std::vector<ASTNode> funcBody;
+        // End properties used for functions
 
     private:
         std::string resolveTypeToStr(NodeType nodeType);
@@ -42,12 +54,9 @@ class VarDeclNode: public ASTNode
     public:
         VarDeclNode(std::string varName, std::string value): ASTNode(_ntVarDeclNode)
         {
-            this->name = varName;
-            this->value = value;
+            this->varName = varName;
+            this->varValue = value;
         }
-
-        std::string name;
-        std::string value;
 };
 
 class FuncDeclNode: public ASTNode
@@ -55,12 +64,9 @@ class FuncDeclNode: public ASTNode
     public:
         FuncDeclNode(std::string funcName, std::vector<ASTNode> body): ASTNode(_ntFuncDeclNode)
         {
-            this->name = funcName;
-            this->body = body;
+            this->funcName = funcName;
+            this->funcBody = body;
         }
-
-        std::string name;
-        std::vector<ASTNode> body;
 };
 
 #endif
