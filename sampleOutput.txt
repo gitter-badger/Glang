@@ -78,3 +78,4 @@ Current input file: /Users/Brynden/src/glang/test/program1.glang
 [Identifier]	this
 [Unknown]	:
 [Identifier]	myFunc
+[Unknown]	();

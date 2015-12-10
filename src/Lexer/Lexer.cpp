@@ -76,6 +76,10 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
             }
         }
 
+        // Since we've finished looping through the file, we should
+        //  dump the contents of 'tmpStream' into 'finalTokenList'.
+        finalTokenList.push_back(Token(lastToken.getType(), tmpStream));
+
         // Close the file that we opened earlier, because we're done with it.
         file.close();
     }
