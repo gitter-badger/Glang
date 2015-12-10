@@ -23,12 +23,6 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
     std::vector<Token> finalTokenList;
 
     // Used to keep track of things like "123546"
-    //
-    // NOTE (Gigabyte Giant): This would probably
-    //  be fine as a 'std::string'.
-    //
-    // TODO (Gigabyte Giant): Change this to be of
-    //  the 'std::string' type.
     std::string tmpStream = "";
 
     // Used to keep track of the last token that we iterated over.
