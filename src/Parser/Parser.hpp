@@ -9,17 +9,7 @@
 #define __PARSER_H__
 
 #import <iostream>
-#import <vector>
-#import "../Lexer/Token.hpp"
 
-class Parser
-{
-    public:
-        Parser();
-        void parse(std::vector<Token> tokenList);
-
-    private:
-        std::vector< std::vector<Token> > separateLines(std::vector<Token> tokenList);
-};
+// TODO (Gigabyte Giant): ...
 
 #endif

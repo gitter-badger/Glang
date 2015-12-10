@@ -11,26 +11,6 @@
 #import <fstream>
 #import <string>
 
-std::string getFile(const char *filePath)
-{
-    std::string fileValue;
-    std::ifstream inputFile;
-
-    inputFile.open(filePath);
-
-    if (inputFile.is_open())
-    {
-        char tmpChar;
-
-        while (inputFile.get(tmpChar))
-        {
-            fileValue = fileValue + tmpChar;
-        }
-
-        inputFile.close();
-    }
-
-    return fileValue;
-}
+// TODO (Gigabyte Giant): ...
 
 #endif

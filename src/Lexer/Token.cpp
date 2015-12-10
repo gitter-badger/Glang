@@ -4,21 +4,9 @@
 // Token class implementation
 // Created by Gigabyte Giant on 12/09/2015
 //
+// TODO (Gigabyte Giant): Rewrite Token class implementation.
+//
 
 #import "Token.hpp"
 
-Token::Token(std::string type, std::string val)
-{
-    this->typeStr = type;
-    this->valStr = val;
-}
-
-std::string Token::getType()
-{
-    return this->typeStr;
-}
-
-std::string Token::getVal()
-{
-    return this->valStr;
-}
+// TODO (Gigabyte Giant): ...
