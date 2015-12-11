@@ -1,50 +1,9 @@
 Current input file: /Users/Brynden/src/glang/test/program1.glang
-[Identifier]	let
-[Identifier]	myVariable
-[Unknown]	=
-[Number]	2
-[Terminator]	;
-[Identifier]	fn
-[Identifier]	myFunc
-[LeftParen]	[
-[RightParen]	]
-[Identifier]	do
-[Terminator]	;
-[Identifier]	give
-[Number]	3
-[Terminator]	;
-[Identifier]	done
-[Terminator]	;
-[Identifier]	myFunc
-[LeftParen]	[
-[RightParen]	]
-[Terminator]	;
-[Identifier]	myFunc
-[LeftParen]	(
-[RightParen]	)
-[Terminator]	;
+VariableDeclaration: myVariable 2
+FunctionDeclaration: someFunc
 Current input file: /Users/Brynden/src/glang/test/program2.glang
-[Identifier]	let
-[Identifier]	asdf
-[Unknown]	=
-[Number]	123
-[Terminator]	;
-[Identifier]	fn
-[Identifier]	myFunc
-[LeftParen]	(
-[Identifier]	someParam
-[RightParen]	)
-[Identifier]	do
-[Terminator]	;
-[Identifier]	give
-[Identifier]	someParam
-[Operator]	*
-[Number]	2
-[Terminator]	;
-[Identifier]	done
-[Terminator]	;
-[Identifier]	myFunc
-[LeftParen]	(
-[Identifier]	asdf
-[RightParen]	)
-[Terminator]	;
+VariableDeclaration: myVariable 2
+FunctionDeclaration: someFunc
+VariableDeclaration: asdf 123
+VariableDeclaration: test null
+FunctionDeclaration: someFunc
