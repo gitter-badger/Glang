@@ -55,6 +55,10 @@ void Parser::parse(std::vector<Token> tokenList)
         {
             printf("%s: %s %s\n", currNode.nodeType.c_str(), currNode.varName.c_str(), currNode.varValue.c_str());
         }
+        else if (currNode.nodeType == "FunctionDeclaration")
+        {
+            printf("%s: %s\n", currNode.nodeType.c_str(), currNode.funcName.c_str());
+        }
     }
 }
 
