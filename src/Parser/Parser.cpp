@@ -19,21 +19,29 @@ void Parser::parse(std::vector<Token> tokenList)
     {
         std::vector<Token> currLn = fileLines.at(lnInd);
 
-        if (currLn.at(0).resolveType() == "Keyword")
+        try
         {
-            if (currLn.at(0).getValue() == "let")
+            if (currLn.at(0).resolveType() == "Keyword")
             {
-                this->ast.addNode(this->parseVarDecl(currLn));
+                if (currLn.at(0).getValue() == "let")
+                {
+                    this->ast.addNode(this->parseVarDecl(currLn));
+                }
+                else if (currLn.at(0).getValue() == "fn")
+                {
+                    this->ast.addNode(this->parseFuncDecl(currLn));
+                }
             }
-            else if (currLn.at(0).getValue() == "fn")
+            else
             {
-                this->ast.addNode(this->parseFuncDecl(currLn));
+                // TODO (Gigabyte Giant): Figure out a good way to determine
+                //  what everything else is.
             }
         }
-        else
+        catch (const std::out_of_range &err)
         {
-            // TODO (Gigabyte Giant): Figure out a good way to determine
-            //  what everything else is.
+            // We should probably do something in here, I'm just not sure
+            //  what that something is (yet).
         }
     }
 
@@ -43,14 +51,10 @@ void Parser::parse(std::vector<Token> tokenList)
     {
         ASTNode currNode = this->ast.get(i);
 
-        printf("%s", currNode.nodeType.c_str());
-
         if (currNode.nodeType == "VariableDeclaration")
         {
-            printf(": %s %s\n", currNode.varName.c_str(), currNode.varValue.c_str());
+            printf("%s: %s %s\n", currNode.nodeType.c_str(), currNode.varName.c_str(), currNode.varValue.c_str());
         }
-
-        printf("\n");
     }
 }
 
@@ -80,9 +84,21 @@ std::vector< std::vector<Token> > Parser::getLines(std::vector<Token> tokList)
 
 VarDeclNode Parser::parseVarDecl(std::vector<Token> line)
 {
-    // TODO (Gigabyte Giant): Parse a variable declaration
+    std::string variableName = "";
+    std::string variableValue = "null";
 
-    return VarDeclNode("someVar", "someValue");
+    variableName = line.at(1).getValue();
+    try
+    {
+        variableValue = line.at(3).getValue();
+    }
+    catch (const std::out_of_range &err)
+    {
+        // Don't do anything here. The use didn't provide an intial value,
+        //  and that's cool, we understand.
+    }
+
+    return VarDeclNode(variableName, variableValue);
 }
 
 FuncDeclNode Parser::parseFuncDecl(std::vector<Token> line)

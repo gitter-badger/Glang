@@ -1,7 +1,9 @@
 let asdf = 123;
 
+let test;
+
 fn myFunc(someParam) do;
     give someParam * 2;
 done;
 
-myFunc(asdf);
+$ myFunc(asdf);
