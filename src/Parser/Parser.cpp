@@ -98,7 +98,7 @@ VarDeclNode Parser::parseVarDecl(std::vector<Token> line)
     }
     catch (const std::out_of_range &err)
     {
-        // Don't do anything here. The use didn't provide an intial value,
+        // Don't do anything here. The user didn't provide an intial value,
         //  and that's cool, we understand.
     }
 
