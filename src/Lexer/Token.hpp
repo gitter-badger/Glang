@@ -26,6 +26,7 @@ class Token
 
         TokenType getType();
         std::string getValue();
+        void append(std::string value);
 
     private:
         TokenType type;

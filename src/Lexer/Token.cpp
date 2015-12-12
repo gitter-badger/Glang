@@ -23,6 +23,11 @@ std::string Token::getValue()
     return this->value;
 }
 
+void Token::append(std::string value)
+{
+    this->value = this->value + value;
+}
+
 UnknownToken::UnknownToken(std::string value): Token(Unknown, value)
 {
 }
