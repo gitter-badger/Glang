@@ -43,3 +43,7 @@ StringToken::StringToken(std::string value): Token(String, value)
 IdentifierToken::IdentifierToken(std::string value): Token(Identifier, value)
 {
 }
+
+TerminatorToken::TerminatorToken(std::string value): Token(Terminator, value)
+{
+}
