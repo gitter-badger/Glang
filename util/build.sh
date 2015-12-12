@@ -11,7 +11,6 @@ binDir=$projectRoot/bin
 classes=(
     "Lexer"
     "Token"
-    "Keywords"
 )
 
 incStrs=""
