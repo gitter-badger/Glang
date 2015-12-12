@@ -17,7 +17,8 @@ enum TokenType
     Number,
     String,
     Identifier,
-    Terminator
+    Terminator,
+    Whitespace
 };
 
 class Token
@@ -62,6 +63,12 @@ class TerminatorToken: public Token
 {
     public:
         TerminatorToken(std::string value);
+};
+
+class WhitespaceToken: public Token
+{
+    public:
+        WhitespaceToken(std::string value);
 };
 
 #endif

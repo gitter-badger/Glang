@@ -47,3 +47,7 @@ IdentifierToken::IdentifierToken(std::string value): Token(Identifier, value)
 TerminatorToken::TerminatorToken(std::string value): Token(Terminator, value)
 {
 }
+
+WhitespaceToken::WhitespaceToken(std::string value): Token(Whitespace, value)
+{
+}
