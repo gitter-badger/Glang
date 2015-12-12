@@ -23,35 +23,10 @@ std::string Token::getValue()
     return this->value;
 }
 
-std::string Token::resolveType()
+UnknownToken::UnknownToken(std::string value): Token(Unknown, value)
 {
-    switch (this->type)
-    {
-        case Identifier:
-            return "Identifier";
+}
 
-        case Number:
-            return "Number";
-
-        case Whitespace:
-            return "Whitespace";
-
-        case Terminator:
-            return "Terminator";
-
-        case LeftParen:
-            return "LeftParen";
-
-        case RightParen:
-            return "RightParen";
-
-        case Operator:
-            return "Operator";
-
-        case Keyword:
-            return "Keyword";
-
-        case Unknown:
-            return "Unknown";
-    }
+NumberToken::NumberToken(std::string value): Token(Number, value)
+{
 }

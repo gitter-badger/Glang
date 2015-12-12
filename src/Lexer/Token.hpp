@@ -13,15 +13,10 @@
 
 enum TokenType
 {
-    Identifier,
+    Unknown,
     Number,
-    Whitespace,
-    Terminator,
-    LeftParen,
-    RightParen,
-    Operator,
-    Keyword,
-    Unknown
+    String,
+    Identifier
 };
 
 class Token
@@ -31,11 +26,22 @@ class Token
 
         TokenType getType();
         std::string getValue();
-        std::string resolveType();
 
     private:
         TokenType type;
         std::string value;
+};
+
+class UnknownToken: public Token
+{
+    public:
+        UnknownToken(std::string value);
+};
+
+class NumberToken: public Token
+{
+    public:
+        NumberToken(std::string value);
 };
 
 #endif
