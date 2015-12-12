@@ -73,10 +73,22 @@ A letter is defined using any *one* of the following characters:
  * `8`
  * `9`
  
+ 
 ## Operators
 Operators are used to perform operations.
+
 ### Arithmetic
  * `+` - Addition
  * `-` - Subtraction
  * `*` - Multiplication
  * `/` - Division
+ 
+ 
+## Identifiers
+Identifiers are defined using any number of characters from the following categories (categories defined above):
+ * Letters
+  
+## Reserved
+The following are considered identifiers, but they are marked as reserved in Glang.
+ * `let`
+ * `fn`
