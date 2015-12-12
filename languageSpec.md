@@ -87,8 +87,13 @@ Operators are used to perform operations.
 ## Identifiers
 Identifiers are defined using any number of characters from the following categories (categories defined above):
  * Letters
-  
+
 ## Reserved
 The following are considered identifiers, but they are marked as reserved in Glang.
  * `let`
  * `fn`
+ 
+## Other characters
+ * `$` - Single-line comment start
+ * `(` - ...
+ * `)` - ...
