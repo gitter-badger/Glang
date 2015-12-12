@@ -43,7 +43,6 @@ class Lexer
     private:
         bool is(CharacterType type, char c);
         Token getTokenFromChar(char c);
-        Keywords keywordTracker = Keywords();
 };
 
 #endif
