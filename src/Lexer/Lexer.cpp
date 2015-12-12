@@ -15,104 +15,20 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
 {
     std::ifstream file;
 
-    // Used to keep track of all of the "final tokens".
-    // Also gets returned to caller.
     std::vector<Token> finalTokenList;
 
-    // Used to keep track of things like "123546"
-    std::string tmpStream = "";
-
-    // Used to keep track of the last token that we iterated over.
-    Token lastToken = Token(Unknown, "N/A");
-
-    // Used to determine whether or not we're in a comment.
-    bool inComment = false;
-
-    // (Try to) open the file at the path specified in 'filePath'
     file.open(filePath);
 
-    // If we were able to open the file...
     if (file.is_open())
     {
-        // ...tokenize!
-
         char tmpChar;
 
         while (file.get(tmpChar))
         {
-            if (file.good())
-            {
-                Token currToken = this->getTokenFromChar(tmpChar);
-
-                // If we're not currently in a comment, let's go ahead and
-                //  check to see if we're looking at a character that marks
-                //  the start of a comment.
-                if (!inComment)
-                {
-                    inComment = _isCommentStart(tmpChar);
-                }
-                
-                // If we're currently in a comment, let's go ahead and
-                //  check to see if we're looking at a character that marks
-                //  the end of a comment. 
-                if (inComment)
-                {
-                    inComment = !_isCommentEnd(tmpChar);
-                }
-
-                if (!inComment)
-                {                    
-                    // TODO (Gigabyte Giant): Figure out a more "sane" check
-                    //  to see if we're at the start of the file.
-                    if (lastToken.getValue() == "N/A")
-                    {
-                        lastToken = currToken;
-                    }
-
-                    if ((lastToken.getType() != currToken.getType()) &&
-                        tmpStream.size() > 0)
-                    {
-                        // TODO (Gigabyte Giant): Perform a final check to see if
-                        //  the "tokens" in 'tmpStream' make up a reserved word.
-
-                        Token tokToAdd = Token(lastToken.getType(), tmpStream);
-
-                        if (this->keywordTracker.isStrKeyword(tmpStream))
-                        {
-                            tokToAdd = Token(Keyword, tmpStream);
-                        }
-
-                        // Append a new 'Token' to 'finalTokenList'.
-                        finalTokenList.push_back(tokToAdd);
-
-                        // Clear 'tmpStream'.
-                        tmpStream = "";
-                    }
-
-                    if (!this->is(_ctIgnored, tmpChar))
-                    {
-                        // Append the current character to 'tmpStream'.
-                        tmpStream = tmpStream + tmpChar;
-
-                        // Since we'll be moving forward, "the current token
-                        //  becomes the last token".
-                        lastToken = currToken;
-                    }
-                }
-            }
+            
         }
 
-        // Since we've finished looping through the file, we should
-        //  dump the contents of 'tmpStream' into 'finalTokenList'.
-        finalTokenList.push_back(Token(lastToken.getType(), tmpStream));
-
-        // Close the file that we opened earlier, because we're done with it.
         file.close();
-    }
-    else
-    {
-        // TODO (Gigabyte Giant): If we couldn't open the file, tell the end
-        //  user.
     }
 
     return finalTokenList;
@@ -120,69 +36,10 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
 
 bool Lexer::is(CharacterType type, char c)
 {
-    switch (type)
-    {
-        case _ctNumber:
-            return _isNumber(c);
-
-        case _ctIdentifier:
-            return _isIdent(c);
-
-        case _ctWhitespace:
-            return _isWhitespace(c);
-
-        case _ctIgnored:
-            return _isIgnored(c);
-
-        case _ctTerminator:
-            return _isTerminator(c);
-
-        case _ctLeftParen:
-            return _isLeftParen(c);
-
-        case _ctRightParen:
-            return _isRightParen(c);
-
-        case _ctOperator:
-            return _isOperator(c);
-
-        case _ctUnknown:
-            return _isUnknown(c);
-    }
-
     return false;
 }
 
 Token Lexer::getTokenFromChar(char c)
 {
-    if (this->is(_ctIdentifier, c))
-    {
-        return Token(Identifier, std::string(c, 1));
-    }
-    else if (this->is(_ctNumber, c))
-    {
-        return Token(Number, std::string(c, 1));
-    }
-    else if (this->is(_ctWhitespace, c))
-    {
-        return Token(Whitespace, std::string(c, 1));
-    }
-    else if (this->is(_ctTerminator, c))
-    {
-        return Token(Terminator, std::string(c, 1));
-    }
-    else if (this->is(_ctLeftParen, c))
-    {
-        return Token(LeftParen, std::string(c, 1));
-    }
-    else if (this->is(_ctRightParen, c))
-    {
-        return Token(RightParen, std::string(c, 1));
-    }
-    else if (this->is(_ctOperator, c))
-    {
-        return Token(Operator, std::string(c, 1));
-    }
-
     return Token(Unknown, std::string(c, 1));
 }

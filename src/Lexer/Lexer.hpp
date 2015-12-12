@@ -31,15 +31,7 @@
 
 enum CharacterType
 {
-    _ctUnknown,
-    _ctNumber,
-    _ctIdentifier,
-    _ctWhitespace,
-    _ctTerminator,
-    _ctIgnored,
-    _ctLeftParen,
-    _ctRightParen,
-    _ctOperator
+    _ctUnknown
 };
 
 class Lexer
