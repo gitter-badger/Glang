@@ -44,4 +44,16 @@ class NumberToken: public Token
         NumberToken(std::string value);
 };
 
+class StringToken: public Token
+{
+    public:
+        StringToken(std::string value);
+};
+
+class IdentifierToken: public Token
+{
+    public:
+        IdentifierToken(std::string value);
+};
+
 #endif

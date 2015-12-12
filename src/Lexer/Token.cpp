@@ -30,3 +30,11 @@ UnknownToken::UnknownToken(std::string value): Token(Unknown, value)
 NumberToken::NumberToken(std::string value): Token(Number, value)
 {
 }
+
+StringToken::StringToken(std::string value): Token(String, value)
+{
+}
+
+IdentifierToken::IdentifierToken(std::string value): Token(Identifier, value)
+{
+}

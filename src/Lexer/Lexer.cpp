@@ -25,7 +25,7 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
 
         while (file.get(tmpChar))
         {
-            
+
         }
 
         file.close();
@@ -41,5 +41,5 @@ bool Lexer::is(CharacterType type, char c)
 
 Token Lexer::getTokenFromChar(char c)
 {
-    return Token(Unknown, std::string(c, 1));
+    return UnknownToken(std::string(c, 1));
 }
