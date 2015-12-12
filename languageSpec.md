@@ -58,10 +58,10 @@ A letter is defined using any *one* of the following characters:
  * `x`
  * `y`
  * `z`
- 
- 
- ### Numbers
- A number is defined using any number of the following characters:
+
+
+### Numbers
+A number is defined using any number of the following characters:
  * `0`
  * `1`
  * `2`
