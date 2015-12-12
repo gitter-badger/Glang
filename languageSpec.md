@@ -1,4 +1,4 @@
-# Clang Language Spec
+# Glang Language Spec
 **First draft created by [Gigabyte Giant](https://github.com/Gigabyte-Giant) on 09/13/2015**.
 
 ## Literals
