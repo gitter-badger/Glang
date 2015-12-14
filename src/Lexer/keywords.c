@@ -10,9 +10,9 @@
 
 // TODO (Gigabyte Giant): Figure out a better way to do this...
 #define _isKeyword(str) ( \
-    _keyFn(str) || \
-    _keyLet(str) || \
-    _keyGive(str) \
+    _keyFn(str) ||        \
+    _keyLet(str) ||       \
+    _keyGive(str)         \
 )
 
 #define _keyFn(str) (str == "fn")
