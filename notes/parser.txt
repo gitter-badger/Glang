@@ -1,0 +1,16 @@
+Parser Brainstorming
+====================
+
+The parser's job, is to "check the token list for certain 'patterns'".
+
+Example patterns: (`...` denotes an area where multiple token types can be used)
+ - Variable Declaration: 
+    <keyword> <identifier> <operator> ... <terminator>
+
+ - Function Declaration:
+    <keyword> <identifier> <leftparen> ... <rightparen> <leftbrace>
+        ...
+    <rightbrace>
+
+ - Function Invocation:
+    <identifier> <leftparen> ... <rightparen> <terminator>
