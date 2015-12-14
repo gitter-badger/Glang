@@ -113,11 +113,6 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
     return finalTokenList;
 }
 
-bool Lexer::is(CharacterType type, char c)
-{
-    return false;
-}
-
 Token Lexer::getTokenFromChar(char c, lexFlags flags)
 {
     std::string stringVal = std::string(&c);

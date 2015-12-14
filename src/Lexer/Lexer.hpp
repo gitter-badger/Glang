@@ -38,11 +38,6 @@ struct flagStruct
 
 typedef struct flagStruct lexFlags;
 
-enum CharacterType
-{
-    _ctUnknown
-};
-
 class Lexer
 {
     public:
@@ -50,7 +45,6 @@ class Lexer
         std::vector<Token> tokenizeFile(const char *filePath);
 
     private:
-        bool is(CharacterType type, char c);
         Token getTokenFromChar(char c, lexFlags flags);
 };
 
