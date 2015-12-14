@@ -8,20 +8,4 @@
 #ifndef __AST_H__
 #define __AST_H__
 
-#import <iostream>
-#import <vector>
-#import "ASTNode.hpp"
-
-class AST
-{
-    public:
-        AST();
-        void addNode(ASTNode newNode);
-        size_t size();
-        ASTNode get(size_t index);
-
-    private:
-        std::vector<ASTNode> nodes;
-};
-
 #endif
