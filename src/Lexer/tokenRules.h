@@ -19,6 +19,11 @@
 #define _isQuote(c) (c == '\"' || c == '\'')
 #define _isTerminator(c) (c == ';')
 
+#define _isLeftParen(c) (c == '(' || c == '[')
+#define _isRightParen(c) (c == ')' || c == ']')
+#define _isLeftBrace(c) (c == '{')
+#define _isRightBrace(c) (c == '}')
+
 #define _isNewline(c) (c == '\n' || c == '\r' || c == '\f')
 #define _isWhitespace(c) (_isNewline(c) || c == ' ' || c == '\t')
 

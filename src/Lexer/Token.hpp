@@ -19,7 +19,11 @@ enum TokenType
     Identifier,
     Terminator,
     Operator,
-    Whitespace
+    Whitespace,
+    LeftParen,
+    RightParen,
+    LeftBrace,
+    RightBrace
 };
 
 class Token
@@ -76,6 +80,30 @@ class OperatorToken: public Token
 {
     public:
         OperatorToken(std::string value);
+};
+
+class LeftParenToken: public Token
+{
+    public:
+        LeftParenToken(std::string value);
+};
+
+class RightParenToken: public Token
+{
+    public:
+        RightParenToken(std::string value);
+};
+
+class LeftBraceToken: public Token
+{
+    public:
+        LeftBraceToken(std::string value);
+};
+
+class RightBraceToken: public Token
+{
+    public:
+        RightBraceToken(std::string value);
 };
 
 #endif

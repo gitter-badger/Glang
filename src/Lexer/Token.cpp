@@ -48,6 +48,18 @@ std::string Token::resolveType()
         case Operator:
             return "Operator";
 
+        case LeftParen:
+            return "LeftParen";
+
+        case RightParen:
+            return "RightParen";
+
+        case LeftBrace:
+            return "LeftBrace";
+
+        case RightBrace:
+            return "RightBrace";
+
         default:
             return "Failed to resolve type";
     }
@@ -78,5 +90,21 @@ WhitespaceToken::WhitespaceToken(std::string value): Token(Whitespace, value)
 }
 
 OperatorToken::OperatorToken(std::string value): Token(Operator, value)
+{
+}
+
+LeftParenToken::LeftParenToken(std::string value): Token(LeftParen, value)
+{
+}
+
+RightParenToken::RightParenToken(std::string value): Token(RightParen, value)
+{
+}
+
+LeftBraceToken::LeftBraceToken(std::string value): Token(LeftBrace, value)
+{
+}
+
+RightBraceToken::RightBraceToken(std::string value): Token(RightBrace, value)
 {
 }

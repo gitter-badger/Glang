@@ -51,7 +51,7 @@ class Lexer
 
     private:
         bool is(CharacterType type, char c);
-        Token getTokenFromChar(char c);
+        Token getTokenFromChar(char c, lexFlags flags);
 };
 
 #endif

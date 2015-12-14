@@ -50,6 +50,8 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
 
                 if (!flags.inComment)
                 {
+                    std::string stringVal = std::string(&tmpChar);
+
                     if (!flags.seenEscape && _isEscape(tmpChar))
                     {
                         flags.seenEscape = true;
@@ -66,35 +68,13 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
                     }
                     else if (!flags.seenEscape && flags.inString && _isQuote(tmpChar))
                     {
-                        tempToken = StringToken("\"");
                         flags.inString = false;
                         flags.doIgnores = true;
                     }
 
-                    std::string stringVal = std::string(&tmpChar);
-
                     if (!flags.inString)
                     {
-                        if (_isIdentifier(tmpChar))
-                        {
-                            tempToken = IdentifierToken(stringVal);
-                        }
-                        if (_isNumber(tmpChar))
-                        {
-                            tempToken = NumberToken(stringVal);
-                        }
-                        if (_isOperator(tmpChar))
-                        {
-                            tempToken = OperatorToken(stringVal);
-                        }
-                        if (_isWhitespace(tmpChar))
-                        {
-                            tempToken = WhitespaceToken(stringVal);
-                        }
-                        if (_isTerminator(tmpChar))
-                        {
-                            tempToken = TerminatorToken(stringVal);
-                        }
+                        tempToken = this->getTokenFromChar(tmpChar, flags);
                     }
                     else
                     {
@@ -138,28 +118,51 @@ bool Lexer::is(CharacterType type, char c)
     return false;
 }
 
-Token Lexer::getTokenFromChar(char c)
+Token Lexer::getTokenFromChar(char c, lexFlags flags)
 {
+    std::string stringVal = std::string(&c);
+    Token tempToken = UnknownToken(stringVal);
+
     if (_isIdentifier(c))
     {
-        return IdentifierToken(std::string(c, 1));
+        tempToken = IdentifierToken(stringVal);
     }
     else if (_isNumber(c))
     {
-        return NumberToken(std::string(c, 1));
-    }
-    else if (_isWhitespace(c))
-    {
-        return WhitespaceToken(std::string(c, 1));
-    }
-    else if (_isTerminator(c))
-    {
-        return TerminatorToken(std::string(c, 1));
+        tempToken = NumberToken(stringVal);
     }
     else if (_isOperator(c))
     {
-        return OperatorToken(std::string(c, 1));
+        tempToken = OperatorToken(stringVal);
+    }
+    else if (_isWhitespace(c))
+    {
+        tempToken = WhitespaceToken(stringVal);
+    }
+    else if (_isTerminator(c))
+    {
+        tempToken = TerminatorToken(stringVal);
+    }
+    else if (_isLeftParen(c))
+    {
+        tempToken = LeftParenToken(stringVal);
+    }
+    else if (_isRightParen(c))
+    {
+        tempToken = RightParenToken(stringVal);
+    }
+    else if (_isLeftBrace(c))
+    {
+        tempToken = LeftBraceToken(stringVal);
+    }
+    else if (_isRightBrace(c))
+    {
+        tempToken = RightBraceToken(stringVal);
+    }
+    else if (_isQuote(c))
+    {
+        tempToken = StringToken(stringVal);
     }
 
-    return UnknownToken(std::string(c, 1));
+    return tempToken;
 }
