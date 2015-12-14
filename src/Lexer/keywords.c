@@ -8,7 +8,12 @@
 #ifndef __KEYWORDS_H__
 #define __KEYWORDS_H__
 
-#define _isKeyword(str) (_keyFn(str) || _keyLet(str))
+// TODO (Gigabyte Giant): Figure out a better way to do this...
+#define _isKeyword(str) ( \
+    _keyFn(str) || \
+    _keyLet(str) || \
+    _keyGive(str) \
+)
 
 #define _keyFn(str) (str == "fn")
 #define _keyLet(str) (str == "let")
