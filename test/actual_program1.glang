@@ -10,7 +10,7 @@ fn output(message) {
 $ Like in many other programming languages, the 'main' function
 $  defines the entry point for the program.
 fn main() {
-    let welcomeMessage = "Hello, Glang users!";
+    let welcomeMessage = "Hello from Glang!";
 
     output(welcomeMessage);
 
