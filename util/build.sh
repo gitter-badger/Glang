@@ -11,10 +11,6 @@ binDir=$projectRoot/bin
 classes=(
     "Lexer"
     "Token"
-    "Keywords"
-    "Parser"
-    "AST"
-    "ASTNode"
 )
 
 incStrs=""

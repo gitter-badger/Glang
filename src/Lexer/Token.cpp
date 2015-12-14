@@ -27,17 +27,26 @@ std::string Token::resolveType()
 {
     switch (this->type)
     {
-        case Identifier:
-            return "Identifier";
+        case Unknown:
+            return "Unknown";
 
         case Number:
             return "Number";
 
-        case Whitespace:
-            return "Whitespace";
+        case String:
+            return "String";
+
+        case Identifier:
+            return "Identifier";
 
         case Terminator:
             return "Terminator";
+
+        case Whitespace:
+            return "Whitespace";
+
+        case Operator:
+            return "Operator";
 
         case LeftParen:
             return "LeftParen";
@@ -45,13 +54,57 @@ std::string Token::resolveType()
         case RightParen:
             return "RightParen";
 
-        case Operator:
-            return "Operator";
+        case LeftBrace:
+            return "LeftBrace";
 
-        case Keyword:
-            return "Keyword";
+        case RightBrace:
+            return "RightBrace";
 
-        case Unknown:
-            return "Unknown";
+        default:
+            return "Failed to resolve type";
     }
+}
+
+UnknownToken::UnknownToken(std::string value): Token(Unknown, value)
+{
+}
+
+NumberToken::NumberToken(std::string value): Token(Number, value)
+{
+}
+
+StringToken::StringToken(std::string value): Token(String, value)
+{
+}
+
+IdentifierToken::IdentifierToken(std::string value): Token(Identifier, value)
+{
+}
+
+TerminatorToken::TerminatorToken(std::string value): Token(Terminator, value)
+{
+}
+
+WhitespaceToken::WhitespaceToken(std::string value): Token(Whitespace, value)
+{
+}
+
+OperatorToken::OperatorToken(std::string value): Token(Operator, value)
+{
+}
+
+LeftParenToken::LeftParenToken(std::string value): Token(LeftParen, value)
+{
+}
+
+RightParenToken::RightParenToken(std::string value): Token(RightParen, value)
+{
+}
+
+LeftBraceToken::LeftBraceToken(std::string value): Token(LeftBrace, value)
+{
+}
+
+RightBraceToken::RightBraceToken(std::string value): Token(RightBrace, value)
+{
 }

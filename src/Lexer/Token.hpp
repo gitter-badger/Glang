@@ -13,15 +13,17 @@
 
 enum TokenType
 {
-    Identifier,
+    Unknown,
     Number,
-    Whitespace,
+    String,
+    Identifier,
     Terminator,
+    Operator,
+    Whitespace,
     LeftParen,
     RightParen,
-    Operator,
-    Keyword,
-    Unknown
+    LeftBrace,
+    RightBrace
 };
 
 class Token
@@ -36,6 +38,72 @@ class Token
     private:
         TokenType type;
         std::string value;
+};
+
+class UnknownToken: public Token
+{
+    public:
+        UnknownToken(std::string value);
+};
+
+class NumberToken: public Token
+{
+    public:
+        NumberToken(std::string value);
+};
+
+class StringToken: public Token
+{
+    public:
+        StringToken(std::string value);
+};
+
+class IdentifierToken: public Token
+{
+    public:
+        IdentifierToken(std::string value);
+};
+
+class TerminatorToken: public Token
+{
+    public:
+        TerminatorToken(std::string value);
+};
+
+class WhitespaceToken: public Token
+{
+    public:
+        WhitespaceToken(std::string value);
+};
+
+class OperatorToken: public Token
+{
+    public:
+        OperatorToken(std::string value);
+};
+
+class LeftParenToken: public Token
+{
+    public:
+        LeftParenToken(std::string value);
+};
+
+class RightParenToken: public Token
+{
+    public:
+        RightParenToken(std::string value);
+};
+
+class LeftBraceToken: public Token
+{
+    public:
+        LeftBraceToken(std::string value);
+};
+
+class RightBraceToken: public Token
+{
+    public:
+        RightBraceToken(std::string value);
 };
 
 #endif

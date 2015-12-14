@@ -27,19 +27,20 @@
 #include <vector>
 #include "tokenRules.h"
 #include "Token.hpp"
-#include "keywords.hpp"
+
+struct flagStruct
+{
+    bool inComment;
+    bool inString;
+    bool seenEscape;
+    bool doIgnores;
+};
+
+typedef struct flagStruct lexFlags;
 
 enum CharacterType
 {
-    _ctUnknown,
-    _ctNumber,
-    _ctIdentifier,
-    _ctWhitespace,
-    _ctTerminator,
-    _ctIgnored,
-    _ctLeftParen,
-    _ctRightParen,
-    _ctOperator
+    _ctUnknown
 };
 
 class Lexer
@@ -50,8 +51,7 @@ class Lexer
 
     private:
         bool is(CharacterType type, char c);
-        Token getTokenFromChar(char c);
-        Keywords keywordTracker = Keywords();
+        Token getTokenFromChar(char c, lexFlags flags);
 };
 
 #endif

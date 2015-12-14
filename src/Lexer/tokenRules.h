@@ -10,32 +10,30 @@
 
 // NOTE: All macros in this file should be
 //  prefixed with an underscore ('_').
-// 
+//
 // NOTE: When implementing lexer methods
 //  make sure to *not* prefix method names
 //  with underscores.
 
-#define _isIdent(c) ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-#define _isNumber(c) (c >= '0' && c <= '9')
-#define _isNewline(c) (c == '\r' || c == '\n' || c == '\f')
-#define _isWhitespace(c) (_isNewline(c) || c == ' ' || c == '\t')
-#define _isIgnored(c) (c == '\0' || _isWhitespace(c))
+#define _isEscape(c) (c == '\\')
+#define _isQuote(c) (c == '\"' || c == '\'')
 #define _isTerminator(c) (c == ';')
+
 #define _isLeftParen(c) (c == '(' || c == '[')
 #define _isRightParen(c) (c == ')' || c == ']')
-#define _isParen(c) (_isLeftParen(c) || _isRightParen(c))
+#define _isLeftBrace(c) (c == '{')
+#define _isRightBrace(c) (c == '}')
+
+#define _isNewline(c) (c == '\n' || c == '\r' || c == '\f')
+#define _isWhitespace(c) (_isNewline(c) || c == ' ' || c == '\t')
+
 #define _isCommentStart(c) (c == '$')
 #define _isCommentEnd(c) (_isNewline(c))
-#define _isOperator(c) (c == '+' || c == '-' || c == '*' || c == '/' || c == '%')
 
-#define _isUnknown(c) ( \
-    !_isIdent(c) && \
-    !_isNumber(c) && \
-    !_isWhitespace(c) && \
-    !_isParen(c) && \
-    !_isCommentStart(c) && \
-    !_isCommentEnd(c) && \
-    !_isOperator(c) \
-)
+#define _isNumber(c) (c >= '0' && c <= '9')
+#define _isIdentifier(c) ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+#define _isOperator(c) (c == '+' || c == '-' || c == '*' || c == '/' || c == '=')
+
+#define _isIgnored(c) (_isWhitespace(c) || c == '\0')
 
 #endif

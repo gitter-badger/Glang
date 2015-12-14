@@ -1,0 +1,5 @@
+let myStr = "Hello, world!";
+
+$ The following "string" has a "comment" inside of it.
+$ Oh, and this comment has "strings" inside of it!
+let dalsStr = "let myVar = 123; $ Did you know that this is a string?";
