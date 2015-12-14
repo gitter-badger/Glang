@@ -72,8 +72,8 @@ A number is defined using any number of the following characters:
  * `7`
  * `8`
  * `9`
- 
- 
+
+
 ## Operators
 Operators are used to perform operations.
 
@@ -82,8 +82,8 @@ Operators are used to perform operations.
  * `-` - Subtraction
  * `*` - Multiplication
  * `/` - Division
- 
- 
+
+
 ## Identifiers
 Identifiers are defined using any number of characters from the following categories (categories defined above):
  * Letters
@@ -92,9 +92,11 @@ Identifiers are defined using any number of characters from the following catego
 The following are considered identifiers, but they are marked as reserved in Glang.
  * `let`
  * `fn`
- 
+
 ## Other characters
  * `$` - Single-line comment start
  * `(` - ...
  * `)` - ...
+ * `{` - Denotes the start of a code-block
+ * `}` - Denotes the end of a code-block
  * `;` - Line terminator
