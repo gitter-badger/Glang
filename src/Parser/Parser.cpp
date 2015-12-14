@@ -13,4 +13,11 @@ Parser::Parser()
 
 void Parser::parse(std::vector<Token> tokenList)
 {
+    for (size_t tokInd = 0; tokInd < tokenList.size(); tokInd++)
+    {
+        Token currToken = tokenList.at(tokInd);
+
+        // TODO (Gigabyte Giant): Figure out a good way to "parse"
+        //  statements.
+    }
 }

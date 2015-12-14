@@ -16,6 +16,8 @@ Example patterns: (`...` denotes an area where multiple token types can be used)
     <identifier> <leftparen> ... <rightparen> <terminator>
 
 Ideas:
- - Keep track of each of the tokens we've run through, and submit them to methods that'll check if they match a certain pattern.
+ - (Won't work) Keep track of each of the tokens we've run through, and submit them to methods that'll check if they match a certain pattern.
   - If they do, then add the corresponding AST node to the AST.
   - If they don't, log an error message and move on.
+
+ - ...
