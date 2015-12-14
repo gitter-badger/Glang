@@ -60,6 +60,9 @@ std::string Token::resolveType()
         case RightBrace:
             return "RightBrace";
 
+        case Keyword:
+            return "Keyword";
+
         default:
             return "Failed to resolve type";
     }
@@ -106,5 +109,9 @@ LeftBraceToken::LeftBraceToken(std::string value): Token(LeftBrace, value)
 }
 
 RightBraceToken::RightBraceToken(std::string value): Token(RightBrace, value)
+{
+}
+
+KeywordToken::KeywordToken(std::string value): Token(Keyword, value)
 {
 }

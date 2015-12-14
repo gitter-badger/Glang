@@ -90,6 +90,11 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
                     if ((flags.doIgnores && !_isIgnored(tmpChar)) || !flags.doIgnores)
                     {
                         lastToken = Token(tempToken.getType(), lastToken.getValue() + stringVal);
+
+                        if (_isKeyword(lastToken.getValue()))
+                        {
+                            lastToken = KeywordToken(lastToken.getValue());
+                        }
                     }
                 }
             }

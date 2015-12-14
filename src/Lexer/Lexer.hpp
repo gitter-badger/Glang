@@ -14,6 +14,7 @@
 #include <vector>
 #include "tokenRules.h"
 #include "Token.hpp"
+#include "keywords.c"
 
 struct flagStruct
 {

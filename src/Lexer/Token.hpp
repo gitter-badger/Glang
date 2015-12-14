@@ -23,7 +23,8 @@ enum TokenType
     LeftParen,
     RightParen,
     LeftBrace,
-    RightBrace
+    RightBrace,
+    Keyword
 };
 
 class Token
@@ -104,6 +105,12 @@ class RightBraceToken: public Token
 {
     public:
         RightBraceToken(std::string value);
+};
+
+class KeywordToken: public Token
+{
+    public:
+        KeywordToken(std::string value);
 };
 
 #endif
