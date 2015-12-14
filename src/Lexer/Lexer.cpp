@@ -26,7 +26,6 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
     flags.doIgnores = true;
     // === End flag initialization =====
 
-
     file.open(filePath);
 
     if (file.is_open())
@@ -40,7 +39,6 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
             {
                 Token tempToken = UnknownToken("");
 
-                // TODO (Gigabyte Giant): Rewrite this, as Dalendrion broke it.
                 if (!flags.inComment && !flags.seenEscape && !flags.inString && _isCommentStart(tmpChar))
                 {
                     flags.inComment = true;
