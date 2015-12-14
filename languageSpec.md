@@ -92,6 +92,7 @@ Identifiers are defined using any number of characters from the following catego
 The following are considered identifiers, but they are marked as reserved in Glang.
  * `let`
  * `fn`
+ * `give`
 
 ## Other characters
  * `$` - Single-line comment start

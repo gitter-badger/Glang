@@ -12,5 +12,6 @@
 
 #define _keyFn(str) (str == "fn")
 #define _keyLet(str) (str == "let")
+#define _keyGive(str) (str == "give")
 
 #endif
