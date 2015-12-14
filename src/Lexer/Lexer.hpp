@@ -33,6 +33,7 @@ struct flagStruct
     bool inComment;
     bool inString;
     bool seenEscape;
+    bool doIgnores;
 };
 
 typedef struct flagStruct lexFlags;

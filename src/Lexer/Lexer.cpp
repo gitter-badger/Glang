@@ -23,6 +23,7 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
     flags.inComment = false;
     flags.inString = false;
     flags.seenEscape = false;
+    flags.doIgnores = true;
     // === End flag initialization =====
 
 
@@ -60,55 +61,57 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
                 {
                     tempToken = StringToken("\"");
                     flags.inString = true;
+                    flags.doIgnores = false;
                 }
                 else if (!flags.seenEscape && flags.inString && _isQuote(tmpChar))
                 {
                     tempToken = StringToken("\"");
                     flags.inString = false;
+                    flags.doIgnores = true;
                 }
 
-                std::string stringVal = std::string(&tmpChar);
+                if (!flags.inComment)
+                {
+                    std::string stringVal = std::string(&tmpChar);
 
-                if (!flags.inComment && !flags.inString)
-                {
-                    if (_isIdentifier(tmpChar))
+                    if (!flags.inString)
                     {
-                        tempToken = IdentifierToken(stringVal);
+                        if (_isIdentifier(tmpChar))
+                        {
+                            tempToken = IdentifierToken(stringVal);
+                        }
+                        if (_isNumber(tmpChar))
+                        {
+                            tempToken = NumberToken(stringVal);
+                        }
+                        if (_isOperator(tmpChar))
+                        {
+                            tempToken = OperatorToken(stringVal);
+                        }
+                        if (_isWhitespace(tmpChar))
+                        {
+                            tempToken = WhitespaceToken(stringVal);
+                        }
+                        if (_isTerminator(tmpChar))
+                        {
+                            tempToken = TerminatorToken(stringVal);
+                        }
                     }
-                    if (_isNumber(tmpChar))
+                    else
                     {
-                        tempToken = NumberToken(stringVal);
+                        tempToken = StringToken(stringVal);
                     }
-                    if (_isOperator(tmpChar))
-                    {
-                        tempToken = OperatorToken(stringVal);
-                    }
-                    if (_isWhitespace(tmpChar))
-                    {
-                        tempToken = WhitespaceToken(stringVal);
-                    }
-                    if (_isTerminator(tmpChar))
-                    {
-                        tempToken = TerminatorToken(stringVal);
-                    }
-                }
-                else if (flags.inString)
-                {
-                    tempToken = StringToken(stringVal);
-                }
 
-                if ((lastToken.getType() != tempToken.getType()) && lastToken.getValue().size() > 0)
-                {
-                    finalTokenList.push_back(lastToken);
-                    lastToken = UnknownToken("");
-                }
+                    if ((lastToken.getType() != tempToken.getType()) && lastToken.getValue().size() > 0)
+                    {
+                        finalTokenList.push_back(lastToken);
+                        lastToken = UnknownToken("");
+                    }
 
-                // This is a really crappy way of doing this.
-                //  I (Gigabyte Giant), obviously didn't write it.
-                //  (Actually, I did... I feel ashamed)
-                if ((flags.inString == true ? true : !_isIgnored(tmpChar)))
-                {
-                    lastToken = Token(tempToken.getType(), lastToken.getValue() + stringVal);
+                    if ((flags.doIgnores && !_isIgnored(tmpChar)) || !flags.doIgnores)
+                    {
+                        lastToken = Token(tempToken.getType(), lastToken.getValue() + stringVal);
+                    }
                 }
             }
         }
