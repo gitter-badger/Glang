@@ -41,11 +41,11 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
                 Token tempToken = UnknownToken("");
 
                 // TODO (Gigabyte Giant): Rewrite this, as Dalendrion broke it.
-                if (!flags.inComment && !flags.seenEscape && _isCommentStart(tmpChar))
+                if (!flags.inComment && !flags.seenEscape && !flags.inString && _isCommentStart(tmpChar))
                 {
                     flags.inComment = true;
                 }
-                else if (flags.inComment && !flags.seenEscape && _isCommentEnd(tmpChar))
+                else if (flags.inComment && !flags.seenEscape && !flags.inString && _isCommentEnd(tmpChar))
                 {
                     flags.inComment = false;
                 }
