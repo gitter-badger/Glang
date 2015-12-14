@@ -1,0 +1,3 @@
+let myStr = "Hello, world!";
+
+let dalsStr = "let myVar = 123; $ Did you know that this is a string?";

@@ -28,6 +28,15 @@
 #include "tokenRules.h"
 #include "Token.hpp"
 
+struct flagStruct
+{
+    bool inComment;
+    bool inString;
+    bool seenEscape;
+};
+
+typedef struct flagStruct lexFlags;
+
 enum CharacterType
 {
     _ctUnknown

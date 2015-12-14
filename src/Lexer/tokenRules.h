@@ -15,6 +15,20 @@
 //  make sure to *not* prefix method names
 //  with underscores.
 
-// TODO
+#define _isEscape(c) (c == '\\')
+#define _isQuote(c) (c == '\"' || c == '\'')
+#define _isTerminator(c) (c == ';')
+
+#define _isNewline(c) (c == '\n' || c == '\r' || c == '\f')
+#define _isWhitespace(c) (_isNewline(c) || c == ' ' || c == '\t')
+
+#define _isCommentStart(c) (c == '$')
+#define _isCommentEnd(c) (_isNewline(c))
+
+#define _isNumber(c) (c >= '0' && c <= '9')
+#define _isIdentifier(c) ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+#define _isOperator(c) (c == '+' || c == '-' || c == '*' || c == '/' || c == '=')
+
+#define _isIgnored(c) (_isWhitespace(c) || c == '\0')
 
 #endif

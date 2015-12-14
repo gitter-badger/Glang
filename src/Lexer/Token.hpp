@@ -18,6 +18,7 @@ enum TokenType
     String,
     Identifier,
     Terminator,
+    Operator,
     Whitespace
 };
 
@@ -28,7 +29,7 @@ class Token
 
         TokenType getType();
         std::string getValue();
-        void append(std::string value);
+        std::string resolveType();
 
     private:
         TokenType type;
@@ -69,6 +70,12 @@ class WhitespaceToken: public Token
 {
     public:
         WhitespaceToken(std::string value);
+};
+
+class OperatorToken: public Token
+{
+    public:
+        OperatorToken(std::string value);
 };
 
 #endif
