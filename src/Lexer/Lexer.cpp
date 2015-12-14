@@ -49,29 +49,30 @@ std::vector<Token> Lexer::tokenizeFile(const char *filePath)
                 {
                     flags.inComment = false;
                 }
-                if (!flags.seenEscape && _isEscape(tmpChar))
-                {
-                    flags.seenEscape = true;
-                }
-                else if (flags.seenEscape)
-                {
-                    flags.seenEscape = false;
-                }
-                if (!flags.seenEscape && !flags.inString && _isQuote(tmpChar))
-                {
-                    tempToken = StringToken("\"");
-                    flags.inString = true;
-                    flags.doIgnores = false;
-                }
-                else if (!flags.seenEscape && flags.inString && _isQuote(tmpChar))
-                {
-                    tempToken = StringToken("\"");
-                    flags.inString = false;
-                    flags.doIgnores = true;
-                }
 
                 if (!flags.inComment)
                 {
+                    if (!flags.seenEscape && _isEscape(tmpChar))
+                    {
+                        flags.seenEscape = true;
+                    }
+                    else if (flags.seenEscape)
+                    {
+                        flags.seenEscape = false;
+                    }
+                    if (!flags.seenEscape && !flags.inString && _isQuote(tmpChar))
+                    {
+                        tempToken = StringToken("\"");
+                        flags.inString = true;
+                        flags.doIgnores = false;
+                    }
+                    else if (!flags.seenEscape && flags.inString && _isQuote(tmpChar))
+                    {
+                        tempToken = StringToken("\"");
+                        flags.inString = false;
+                        flags.doIgnores = true;
+                    }
+
                     std::string stringVal = std::string(&tmpChar);
 
                     if (!flags.inString)
