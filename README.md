@@ -1,4 +1,6 @@
 # Glang
+
+[![Join the chat at https://gitter.im/Gigabyte-Giant/Glang](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Gigabyte-Giant/Glang?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Created by [Gigabyte Giant](https://github.com/Gigabyte-Giant) because everyone knows that the world needs another lame programming language.
 
 ## The idea
